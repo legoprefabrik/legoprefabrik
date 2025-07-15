@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sembol Prefabrik</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+    /* Yeni Renk Paleti Tanımlamaları */
+    :root {
+        --primary-soft-green: #6B9F71; 
+        --darker-soft-green: #4A7C59; 
+        --light-cream: #F5FBF6;          
+        --text-dark-gray: #333;          
+        --text-medium-gray: #555;        
+        --text-light: #fff;              
+        --background-light: #fefefe;    
+        --card-bg: #fff;                 
+        --border-color: #6B9F71;         
+        --shadow-color: rgba(107, 159, 113, 0.25); 
+        --hover-shadow-color: rgba(74, 124, 89, 0.35); 
+        --accent-yellow: #FFC107;      
+        --darker-accent-yellow: #e0a800; 
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: var(--background-light); 
+        margin: 0;
+        color: var(--text-dark-gray); 
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* ÜST LOGO & SOSYAL ALANI */
+    .header-top {
+        max-width: 1200px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+    .header-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .header-logo img {
+        width: 65px;
+        height: 65px;
+        border-radius: 6px;
+    }
+    .header-logo span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--darker-soft-green); 
+    }
+    .header-socials a {
+        margin-left: 10px;
+        color: var(--darker-soft-green); 
+        font-size: 1.3rem;
+        transition: color 0.3s;
+    }
+    .header-socials a:hover {
+        color: var(--primary-soft-green); 
+    }
+
+    /* Ana Menü - Dropdown (Açılır Menü) için */
+    nav.main-menu {
+    background-color: white; /* Ana menü arka planı beyaz */
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+nav.main-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+nav.main-menu ul li {
+    position: relative; /* Dropdown için önemli */
+}
+nav.main-menu ul li a {
+    text-decoration: none;
+    color: black; /* Yazı rengi siyah */
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid transparent; /* Varsayılan olarak şeffaf bir kenarlık ekledik */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Kenarlık geçişini de ekledik */
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block; /* Tam alanı kaplaması için */
+}
+nav.main-menu ul li a:hover,
+nav.main-menu ul li a.active {
+    background-color: white; /* Üzerine gelince arka plan beyaz kalacak */
+    color: var(--darker-soft-green); /* Yazı rengi koyu yeşil olacak */
+    border-color: var(--primary-soft-green); /* Köşelerden açık yeşil kenarlık gelecek */
+}
+
+/* Dropdown Menü Stilleri */
+nav.main-menu ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Ana menü öğesinin hemen altında başlar */
+    left: 0;
+    background-color: var(--darker-soft-green); /* Koyu yeşil */
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 0 0 8px 8px; /* Alt köşeler yuvarlak */
+    padding: 10px 0;
+}
+nav.main-menu ul li:hover .dropdown-menu {
+    display: block; /* Hover'da göster */
+}
+nav.main-menu ul li .dropdown-menu li {
+    width: 100%; /* Alt öğelerin tamamını kaplaması için */
+}
+nav.main-menu ul li .dropdown-menu li a {
+    color: var(--text-light); /* Dropdown menü yazı rengi hala beyaz */
+    padding: 10px 20px;
+    white-space: nowrap; /* Menü öğesinin tek satırda kalmasını sağlar */
+    font-size: 0.95rem;
+    border: 2px solid transparent; /* Varsayılan olarak şeffaf bir kenarlık ekledik */
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; /* Geçişlere kenarlık rengini de ekledik */
+    border-radius: 0; /* İç öğelerde köşe yuvarlatması yok */
+}
+nav.main-menu ul li .dropdown-menu li a:hover {
+    background-color: white; /* Dropdown menü elemanının üzerine gelince arka plan beyaz */
+    color: var(--darker-soft-green); /* Yazı rengi koyu yeşil */
+    border-color: var(--primary-soft-green); /* Köşelerden açık yeşil kenarlık gelecek */
+}
+
+    /* Kahraman bölümü (Hero) */
+    .hero {
+      background: url('https://i.imgur.com/CTrnoNJ.jpeg') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 10%;
+      color: var(--text-light);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      scroll-margin-top: 70px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1.6rem;
+      max-width: 700px;
+      margin-bottom: 25px;
+    }
+    .btn {
+      background-color: var(--primary-soft-green); 
+      color: var(--text-light);
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: fit-content;
+    }
+    .btn:hover {
+      background-color: var(--darker-soft-green); 
+      box-shadow: 0 6px 20px var(--hover-shadow-color);
+    }
+
+    /* Ortak Bölüm Başlığı */
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--darker-soft-green); 
+        margin-bottom: 30px;
+        margin-top: 50px;
+    }
+
+    /* Ürün Kartları (product-card) için Grid Düzeni */
+    .product-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        padding: 0 20px 50px;
+        box-sizing: border-box;
+    }
+
+    /* Product Card Stilleri */
+    .product-card {
+        perspective: 1000px;
+        position: relative;
+    }
+    .card-content {
+        width: 100%;
+        height: 250px;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px var(--shadow-color); 
+        position: relative;
+    }
+    .product-card:hover .card-content {
+        transform: rotateY(180deg);
+    }
+    .front-face, .back-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+    .front-face {
+        background: var(--card-bg); 
+        border: 2px solid var(--primary-soft-green); 
+        color: var(--darker-soft-green); 
+    }
+    .product-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-bottom: 2px solid var(--primary-soft-green); 
+    }
+    .product-title {
+        padding: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .back-face {
+        background: var(--primary-soft-green); 
+        color: var(--text-light);
+        transform: rotateY(180deg);
+        padding: 15px;
+        font-size: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .back-face .mini-image {
+        width: 100%;
+        height: 100px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid var(--accent-yellow); 
+        box-shadow: 0 3px 8px rgba(255, 193, 7, 0.6);
+        margin-bottom: 10px;
+    }
+    .back-face .short-description {
+        margin-top: 0;
+        flex-grow: 1;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .btn-detail {
+        margin-top: 0;
+        width: 100%;
+        background-color: var(--accent-yellow); 
+        border: none;
+        color: var(--darker-soft-green); 
+        font-weight: 700;
+        padding: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        box-shadow: 0 3px 10px rgba(255, 193, 7, 0.5);
+        transition: background-color 0.3s ease;
+    }
+    .btn-detail:hover {
+        background-color: var(--darker-accent-yellow); 
+    }
+
+    /* Modal Popup */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-overlay.active {
+        display: flex;
+    }
+    .modal-content {
+        background: var(--card-bg);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        padding: 20px 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--darker-soft-green); 
+        cursor: pointer;
+    }
+    .modal-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--darker-soft-green); 
+        margin-bottom: 15px;
+    }
+    .modal-img {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    .modal-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--text-medium-gray); 
+        margin-bottom: 15px;
+    }
+    .modal-features {
+        list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+    }
+    .modal-features li {
+        margin-bottom: 6px;
+    }
+    .modal-price {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary-soft-green); 
+        margin-bottom: 10px;
+    }
+
+   
+        /* Kategori Menüsü */
+        nav.kategori-menu {
+            max-width: 900px; /* Menünün maksimum genişliği */
+            margin: 15px auto 40px; /* Üst, alt ve yan boşluklar */
+            display: flex;
+            justify-content: center; /* Öğeleri yatayda ortaya hizala */
+            background-color: transparent; /* Şeffaf arka plan */
+            padding: 0 10px; /* Yatay kaydırma gerektiğinde kenarlarda boşluk bırakır */
+            border-radius: 0;
+            box-shadow: none;
+            overflow-x: auto; /* ÖNEMLİ: Yatay kaydırmayı etkinleştirir */
+            -webkit-overflow-scrolling: touch; /* iOS cihazlarda daha pürüzsüz kaydırma sağlar */
+            align-items: center; /* Öğeleri dikeyde ortala */
+        }
+
+        nav.kategori-menu ul {
+            list-style: none; /* Liste işaretlerini kaldır */
+            margin: 0; /* Varsayılan boşlukları sıfırla */
+            padding: 0; /* Varsayılan padding'i sıfırla */
+            display: flex;
+            gap: 25px; /* Menü öğeleri arasındaki boşluk */
+            align-items: center; /* Öğeleri dikeyde ortala */
+            flex-wrap: nowrap; /* ÖNEMLİ: Menü öğelerinin ASLA alt alta geçmesini engeller */
+            justify-content: center; /* Öğeleri yatayda ortaya hizala */
+            width: 100%; /* Flex'in içinde tüm genişliği kapla */
+        }
+
+        nav.kategori-menu ul li {
+            flex-shrink: 0; /* ÖNEMLİ: Dar ekranlarda menü öğelerinin küçülmesini engeller */
+        }
+
+        nav.kategori-menu a {
+            text-decoration: none; /* Alt çizgiyi kaldır */
+            color: #1a5e2f; /* Koyu yeşil metin rengi */
+            font-weight: 600; /* Kalın yazı tipi */
+            padding: 8px 18px; /* İç boşluk */
+            border-radius: 8px; /* Köşe yuvarlatma */
+            border: 2px solid transparent; /* Varsayılan olarak şeffaf kenarlık */
+            transition: all 0.3s ease; /* Tüm geçişlere yumuşak efekt ekle */
+            text-transform: uppercase; /* Metni büyük harfe dönüştür */
+            font-size: 0.95rem; /* Yazı boyutu */
+            white-space: nowrap; /* Metnin tek satırda kalmasını sağlar */
+            display: block; /* Tıklama alanını genişletir */
+        }
+
+        nav.kategori-menu a:hover,
+        nav.kategori-menu a.active {
+            border-color: #38a169; /* Hover/Aktif durumda canlı yeşil kenarlık */
+            background-color: #e6f9ed; /* Hover/Aktif durumda açık yeşilimsi arka plan */
+            box-shadow: 0 4px 8px rgba(56,161,105,0.2); /* Yeşil tonunda hafif gölge */
+            color: #38a169; /* Hover/Aktif durumda canlı yeşil metin rengi */
+        }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 1200px) {
+        .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        nav.main-menu ul {
+            gap: 15px; /* Menü öğeleri arasında daha az boşluk */
+        }
+        nav.main-menu ul li a {
+            padding: 6px 12px; /* Daha küçük padding */
+            font-size: 0.9rem;
+        }
+        nav.main-menu ul li .dropdown-menu {
+            min-width: 180px; /* Daha dar dropdown */
+        }
+        nav.main-menu ul li .dropdown-menu li a {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 600px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 0 5%;
+            height: 70vh;
+            align-items: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .header-top, .product-grid {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        nav.main-menu ul {
+            flex-direction: column; /* Mobil görünümde menü dikey */
+            width: 100%;
+            gap: 5px;
+        }
+        nav.main-menu ul li {
+            width: 100%;
+            text-align: center;
+        }
+        nav.main-menu ul li a {
+            width: 100%;
+            padding: 10px;
+        }
+        nav.main-menu ul li .dropdown-menu {
+            position: static; /* Mobil görünümde dropdown menü akışta kalır */
+            width: 100%;
+            box-shadow: none;
+            border-radius: 0;
+            background-color: rgba(74, 124, 89, 0.8); /* Daha şeffaf arka plan */
+            padding: 0;
+        }
+        nav.main-menu ul li .dropdown-menu li a {
+            padding: 8px 10px;
+            font-size: 0.85rem;
+        }
+        .product-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            padding: 0 10px 50px;
+        }
+    }
+
+    /* Daha küçük mobil cihazlar için */
+    @media (max-width: 480px) {
+        .product-grid {
+             padding: 0 5px 50px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="header-top">
+    <div class="header-logo">
+        <img src="https://i.imgur.com/CTrnoNJ.jpeg" alt="Logo">
+        <span>Sembol Prefabrik</span>
+    </div>
+    
+    <div class="header-socials">
+        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+---
+
+<nav class="kategori-menu">
+    <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="projeler.html">Projelerimiz</a></li>
+        <li><a href="urunler.html">Ürünlerimiz</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="sss.html">S.S.S</a></li>
+        <li><a href="iletisim.html" class="active">İletişim</a></li>
+    </ul>
+</nav>
+
+---
+
+<div class="hero">
+    <h1>Hayalinizdeki Prefabrik Yaşam</h1>
+    <p>Modern, dayanıklı ve çevre dostu prefabrik evler, çelik yapılar ve modüler yaşam alanları ile geleceğin konforunu bugünden yaşayın.</p>
+</div>
+
+---
+
+<section>
+    <h2 class="section-title">TEK KATLI PREFABRİK EVLER</h2>
+    <div class="product-grid" id="singleFloorGrid">
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">ÇİFT KATLI DUBLEKS PREFABRİK EVLER</h2>
+    <div class="product-grid" id="doubleFloorGrid">
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">MODERN PREFABRİK EVLER</h2>
+    <div class="product-grid" id="modernGrid">
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">ÇELİK EVLER</h2>
+    <div class="product-grid" id="steelHouseGrid">
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">KONTEYNERLER</h2>
+    <div class="product-grid" id="containerGrid">
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">TİNY HOUSE'LAR</h2>
+    <div class="product-grid" id="tinyHouseGrid">
+    </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 class="modal-title" id="modalTitle">Ürün Başlığı</h2>
+        <img src="" alt="Ürün Resmi" class="modal-img" id="modalImage" />
+        <p class="modal-text" id="modalDesc">Ürün açıklaması buraya gelecek.</p>
+        <ul class="modal-features" id="modalFeatures"></ul>
+        <div class="modal-price" id="modalPrice">Fiyat: --</div>
+    </div>
+</div>
+
+<script>
+    const urunler = [
+        // Tek Katlı Prefabrik Evler
+        { id: 'tekkatli-40', category: 'single', baslik: "Tek Katlı 40m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Kompakt ve işlevsel.", aciklama: "40 metrekarelik bu ev, hızlı kurulum ve uygun maliyet sunar.", ozellikler: ["2 Oda + 1 Salon", "Hazır mutfak"], fiyat: "350.000 TL" },
+        { id: 'tekkatli-50', category: 'single', baslik: "Tek Katlı 50m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Ferahlatan yaşam alanları.", aciklama: "50 metrekarelik model, daha geniş bir salon ve oda seçenekleri sunar.", ozellikler: ["2 Oda + 1 Salon", "Geniş banyo"], fiyat: "420.000 TL" },
+        { id: 'tekkatli-60', category: 'single', baslik: "Tek Katlı 60m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "İdeal aile evi.", aciklama: "60 metrekarelik bu ev, orta büyüklükteki aileler için kullanışlıdır.", ozellikler: ["3 Oda + 1 Salon", "Geniş mutfak"], fiyat: "490.000 TL" },
+        { id: 'tekkatli-70', category: 'single', baslik: "Tek Katlı 70m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Geniş aileler için konfor.", aciklama: "70 metrekarelik bu model, ekstra oda ve yaşam alanı sunar.", ozellikler: ["3 Oda + 1 Salon", "Ebeveyn banyosu"], fiyat: "560.000 TL" },
+        { id: 'tekkatli-80', category: 'single', baslik: "Tek Katlı 80m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Maksimum alan.", aciklama: "80 metrekarelik bu ev, ferah yaşam alanlarıyla öne çıkar.", ozellikler: ["4 Oda + 1 Salon", "Çamaşır odası"], fiyat: "630.000 TL" },
+        { id: 'tekkatli-90', category: 'single', baslik: "Tek Katlı 90m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Büyük aileler için lüks.", aciklama: "90 metrekarelik bu model, geniş aileler için idealdir.", ozellikler: ["4 Oda + 1 Salon", "Şömine alanı"], fiyat: "700.000 TL" },
+        { id: 'tekkatli-100', category: 'single', baslik: "Tek Katlı 100m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Modern yaşam alanı.", aciklama: "100 metrekarelik modern tasarım, konfor ve fonksiyonellik sunar.", ozellikler: ["4 Oda + 1 Salon", "Kiler", "Geniş bahçe alanı"], fiyat: "780.000 TL" },
+        { id: 'tekkatli-110', category: 'single', baslik: "Tek Katlı 110m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Geniş aileler için ideal.", aciklama: "110 metrekarelik bu ev, kalabalık aileler için ferah ve kullanışlıdır.", ozellikler: ["5 Oda + 1 Salon", "2 Banyo", "Veranda"], fiyat: "850.000 TL" },
+        { id: 'tekkatli-120', category: 'single', baslik: "Tek Katlı 120m² Prefabrik Ev", resim: "https://i.imgur.com/W8SHvUc.jpeg", kisaAciklama: "Lüks ve fonksiyonel.", aciklama: "120 metrekarelik lüks tek katlı ev, tüm ihtiyaçlarınızı karşılar.", ozellikler: ["5 Oda + 1 Salon", "Ebeveyn banyosu", "Çamaşır odası"], fiyat: "920.000 TL" },
+
+        // Çift Katlı Dubleks Prefabrik Evler
+        { id: 'ciftkatli-1', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 1", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Modern dubleks yaşam.", aciklama: "Şık ve fonksiyonel dubleks tasarım. Geniş aileler için ideal.", ozellikler: ["3 Oda + 1 Salon", "2 Banyo", "Balkon"], fiyat: "850.000 TL" },
+        { id: 'ciftkatli-2', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 2", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Konforlu ve geniş.", aciklama: "Daha fazla alan arayanlar için tasarlanmış geniş dubleks ev.", ozellikler: ["4 Oda + 1 Salon", "3 Banyo", "Bahçe erişimi"], fiyat: "980.000 TL" },
+        { id: 'ciftkatli-3', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 3", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Lüks ve ferah.", aciklama: "En üst düzey konfor ve lüksü bir araya getiren dubleks model.", ozellikler: ["5 Oda + 1 Salon", "Ebeveyn suiti"], fiyat: "1.200.000 TL" },
+        { id: 'ciftkatli-4', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 4", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Estetik ve pratik.", aciklama: "Modern mimariye sahip, kullanışlı ve estetik çift katlı ev.", ozellikler: ["4 Oda + 1 Salon", "Çift cephe"], fiyat: "1.100.000 TL" },
+        { id: 'ciftkatli-5', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 5", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Geniş aileler için.", aciklama: "Büyük aileler ve misafir ağırlama için ideal geniş dubleks.", ozellikler: ["5 Oda + 2 Salon", "Geniş teras"], fiyat: "1.350.000 TL" },
+        { id: 'ciftkatli-6', category: 'double', baslik: "Çift Katlı Dubleks Prefabrik Ev 6", resim: "https://i.imgur.com/GamO1O1.jpeg", kisaAciklama: "Doğayla uyumlu.", aciklama: "Doğal malzemelerle tasarlanmış, çevre dostu dubleks.", ozellikler: ["4 Oda + 1 Salon", "Ahşap veranda"], fiyat: "1.250.000 TL" },
+
+        // Modern Prefabrik Evler
+        { id: 'modern-1', category: 'modern', baslik: "Modern Prefabrik Ev 1", resim: "https://picsum.photos/id/1035/400/300", kisaAciklama: "Şehir hayatına uyumlu.", aciklama: "Minimalist çizgiler ve akıllı ev teknolojileriyle donatıldı.", ozellikler: ["Akıllı ev sistemleri", "Büyük cam yüzeyler"], fiyat: "750.000 TL" },
+        { id: 'modern-2', category: 'modern', baslik: "Modern Prefabrik Ev 2", resim: "https://picsum.photos/id/1036/400/300", kisaAciklama: "Doğayla iç içe.", aciklama: "Doğayla uyumlu, geniş terasları ve doğal ışık alan iç mekanları.", ozellikler: ["Geniş ahşap teras", "Panoramik pencereler"], fiyat: "900.000 TL" },
+        { id: 'modern-3', category: 'modern', baslik: "Modern Prefabrik Ev 3", resim: "https://picsum.photos/id/1037/400/300", kisaAciklama: "Fütüristik ve yenilikçi.", aciklama: "Geleceğin evleri konseptiyle tasarlanmış, yenilikçi malzemeler.", ozellikler: ["Fütüristik tasarım", "Akustik yalıtım"], fiyat: "1.100.000 TL" },
+        { id: 'modern-4', category: 'modern', baslik: "Modern Prefabrik Ev 4", resim: "https://picsum.photos/id/1038/400/300", kisaAciklama: "Minimalist ve fonksiyonel.", aciklama: "Az alanla çok şey yapmak isteyenler için şık ve pratik çözüm.", ozellikler: ["Az yer kaplar", "Akıllı depolama"], fiyat: "600.000 TL" },
+        { id: 'modern-5', category: 'modern', baslik: "Modern Prefabrik Ev 5", resim: "https://picsum.photos/id/1039/400/300", kisaAciklama: "Sanatsal dokunuşlarla.", aciklama: "Her detayı sanatsal bir dokunuşla tasarlanmış, estetik ve konfor.", ozellikler: ["Benzersiz mimari", "Özel aydınlatma"], fiyat: "1.300.000 TL" },
+        { id: 'modern-6', category: 'modern', baslik: "Modern Prefabrik Ev 6", resim: "https://picsum.photos/id/1040/400/300", kisaAciklama: "Panoramik manzaralar.", aciklama: "Geniş cam yüzeyleri sayesinde panoramik manzaralar sunan ev.", ozellikler: ["Manzara odaklı tasarım", "Güneşlenme terası"], fiyat: "1.500.000 TL" },
+
+        // Çelik Evler (Yeni Kategori)
+        { id: 'celik-1', category: 'steel', baslik: "Çelik Ev Modeli 1", resim: "https://picsum.photos/id/201/400/300", kisaAciklama: "Dayanıklı ve şık.", aciklama: "Yüksek mukavemetli çelik yapısıyla güvenli ve uzun ömürlü bir yaşam alanı.", ozellikler: ["Çelik karkas", "Depreme dayanıklı", "Hızlı montaj"], fiyat: "950.000 TL" },
+        { id: 'celik-2', category: 'steel', baslik: "Çelik Ev Modeli 2", resim: "https://picsum.photos/id/202/400/300", kisaAciklama: "Geniş ve modern.", aciklama: "Çelik yapının esnekliği sayesinde geniş ve açık planlı yaşam alanları sunar.", ozellikler: ["Açık plan tasarım", "Yüksek yalıtım", "Yangına dayanıklı"], fiyat: "1.150.000 TL" },
+        { id: 'celik-3', category: 'steel', baslik: "Çelik Ev Modeli 3", resim: "https://picsum.photos/id/203/400/300", kisaAciklama: "Lüks çelik konut.", aciklama: "Özel tasarım ve lüks detaylarla inşa edilmiş, prestijli çelik ev.", ozellikler: ["Özel cephe kaplama", "Akıllı ev entegrasyonu", "Panoramik görüş"], fiyat: "1.500.000 TL" },
+        { id: 'celik-4', category: 'steel', baslik: "Çelik Ev Modeli 4", resim: "https://picsum.photos/id/204/400/300", kisaAciklama: "Ekonomik çelik çözüm.", aciklama: "Bütçe dostu ancak kaliteden ödün vermeyen sağlam çelik ev.", ozellikler: ["Ekonomik maliyet", "Uzun ömür", "Hızlı kurulum"], fiyat: "800.000 TL" },
+        { id: 'celik-5', category: 'steel', baslik: "Çelik Ev Modeli 5", resim: "https://picsum.photos/id/205/400/300", kisaAciklama: "Çift katlı çelik.", aciklama: "Estetik ve dayanıklılığı bir araya getiren çift katlı çelik konut.", ozellikler: ["Dubleks tasarım", "Yüksek tavan", "Ses yalıtımı"], fiyat: "1.300.000 TL" },
+        { id: 'celik-6', category: 'steel', baslik: "Çelik Ev Modeli 6", resim: "https://picsum.photos/id/206/400/300", kisaAciklama: "Sanayi tipi çelik.", aciklama: "Büyük metrekareli projeler ve endüstriyel kullanımlar için ideal çelik yapılar.", ozellikler: ["Geniş açıklıklar", "Yüksek taşıma kapasitesi", "Modüler tasarım"], fiyat: "2.000.000 TL" },
+
+        // Konteynerler (Yeni Kategori)
+        { id: 'konteyner-1', category: 'container', baslik: "Ofis Konteyner", resim: "https://picsum.photos/id/207/400/300", kisaAciklama: "Taşınabilir ofis çözümü.", aciklama: "Şantiyeler ve geçici ofis ihtiyaçları için pratik ve hızlı çözüm.", ozellikler: ["Klima entegrasyonu", "Elektrik tesisatı", "Ses yalıtımı"], fiyat: "80.000 TL" },
+        { id: 'konteyner-2', category: 'container', baslik: "Yaşam Konteyneri", resim: "https://picsum.photos/id/208/400/300", kisaAciklama: "Konforlu yaşam alanı.", aciklama: "Tek veya iki kişilik yaşam için tasarlanmış, konforlu ve yalıtımlı konteyner ev.", ozellikler: ["Mutfak ve banyo", "Isı yalıtımı", "Pencere ve kapı"], fiyat: "120.000 TL" },
+        { id: 'konteyner-3', category: 'container', baslik: "Depo Konteyneri", resim: "https://picsum.photos/id/209/400/300", kisaAciklama: "Güvenli depolama.", aciklama: "Eşyalarınız ve malzemeleriniz için güvenli ve dayanıklı depolama çözümü.", ozellikler: ["Çelik kapı", "Havalandırma", "Su geçirmez"], fiyat: "60.000 TL" },
+        { id: 'konteyner-4', category: 'container', baslik: "WC-Duş Konteyneri", resim: "https://picsum.photos/id/210/400/300", kisaAciklama: "Hijyenik ve pratik.", aciklama: "Şantiye, etkinlik veya acil durumlar için hijyenik WC-duş ünitesi.", ozellikler: ["Sıcak su", "Havalandırma", "Foseptik bağlantısı"], fiyat: "75.000 TL" },
+        { id: 'konteyner-5', category: 'container', baslik: "İki Katlı Konteyner Ofis", resim: "https://picsum.photos/id/211/400/300", kisaAciklama: "Çok katlı kullanım.", aciklama: "Daha fazla alan ihtiyacı olan işletmeler için iki katlı konteyner ofis.", ozellikler: ["İç merdiven", "Birden fazla oda", "Modüler genişleme"], fiyat: "180.000 TL" },
+        { id: 'konteyner-6', category: 'container', baslik: "Özel Tasarım Konteyner", resim: "https://picsum.photos/id/212/400/300", kisaAciklama: "İhtiyaca özel çözümler.", aciklama: "Kafe, mağaza veya sergi alanı gibi özel projeler için konteyner.", ozellikler: ["Özel cephe", "Vitrin pencere", "Marka entegrasyonu"], fiyat: "200.000 TL" },
+
+        // Tiny House'lar (Yeni Kategori)
+        { id: 'tinyhouse-1', category: 'tinyhouse', baslik: "Tiny House Modeli 1", resim: "https://picsum.photos/id/213/400/300", kisaAciklama: "Minimalist yaşam.", aciklama: "Küçük ama işlevsel, doğayla iç içe bir yaşam hayal edenler için ideal.", ozellikler: ["Tekerlekli şasi", "Tam donanımlı mutfak", "Yatak loftu"], fiyat: "300.000 TL" },
+        { id: 'tinyhouse-2', category: 'tinyhouse', baslik: "Tiny House Modeli 2", resim: "https://picsum.photos/id/214/400/300", kisaAciklama: "Şık ve mobil.", aciklama: "Modern tasarımıyla dikkat çeken, istenilen yere taşınabilen şık tiny house.", ozellikler: ["Panoramik pencere", "Akıllı depolama", "Veranda"], fiyat: "380.000 TL" },
+        { id: 'tinyhouse-3', category: 'tinyhouse', baslik: "Tiny House Modeli 3", resim: "https://picsum.photos/id/215/400/300", kisaAciklama: "Doğal ahşap detaylar.", aciklama: "Doğal ahşap ve sıcak renklerle tasarlanmış, huzurlu bir tiny house.", ozellikler: ["Sedir ağacı kaplama", "Şömine", "Geniş banyo"], fiyat: "450.000 TL" },
+        { id: 'tinyhouse-4', category: 'tinyhouse', baslik: "Tiny House Modeli 4", resim: "https://picsum.photos/id/216/400/300", kisaAciklama: "Çift kişilik konfor.", aciklama: "İki kişi için tasarlanmış, kompakt ve tüm ihtiyaçları karşılayan model.", ozellikler: ["Çift kişilik yatak", "Mini mutfak", "Katlanır masa"], fiyat: "280.000 TL" },
+        { id: 'tinyhouse-5', category: 'tinyhouse', baslik: "Tiny House Modeli 5", resim: "https://picsum.photos/id/217/400/300", kisaAciklama: "Uzun yolculuklar için.", aciklama: "Off-grid yaşam ve uzun yolculuklar için gerekli tüm sistemlere sahip tiny house.", ozellikler: ["Güneş paneli", "Su deposu", "Kompost tuvalet"], fiyat: "500.000 TL" },
+        { id: 'tinyhouse-6', category: 'tinyhouse', baslik: "Tiny House Modeli 6", resim: "https://picsum.photos/id/218/400/300", kisaAciklama: "Büyük pencereli manzara.", aciklama: "Çevreyle bütünleşen, büyük pencereleri sayesinde eşsiz manzara sunan tiny house.", ozellikler: ["Manzara odaklı tasarım", "Geniş camlar", "Katlanabilir yatak"], fiyat: "420.000 TL" }
+    ];
+
+    // Ürün ızgaralarının ID'leri
+    const singleFloorGrid = document.getElementById("singleFloorGrid");
+    const doubleFloorGrid = document.getElementById("doubleFloorGrid");
+    const modernGrid = document.getElementById("modernGrid");
+    const steelHouseGrid = document.getElementById("steelHouseGrid");
+    const containerGrid = document.getElementById("containerGrid");
+    const tinyHouseGrid = document.getElementById("tinyHouseGrid");
+
+    // Modal elementleri
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalFeatures = document.getElementById("modalFeatures");
+    const modalPrice = document.getElementById("modalPrice");
+
+    // Ürün kartı oluşturan fonksiyon
+    function createProductCard(urun, index) {
+        const kart = document.createElement("div");
+        kart.className = "product-card";
+        kart.innerHTML = `
+            <div class="card-content">
+                <div class="front-face">
+                    <img src="${urun.resim}" alt="${urun.baslik}" class="product-image" />
+                    <div class="product-title">${urun.baslik}</div>
+                </div>
+                <div class="back-face">
+                    <img src="${urun.resim}" alt="${urun.baslik} Küçük Önizleme" class="mini-image" />
+                    <div class="short-description">${urun.kisaAciklama}</div>
+                    <button class="btn-detail" data-index="${index}">Detayları Göster</button>
+                </div>
+            </div>
+        `;
+        return kart;
+    }
+
+    // Ürünleri ilgili ızgaralara yükleyen fonksiyon
+    function urunleriYukle() {
+        urunler.forEach((urun, i) => {
+            const card = createProductCard(urun, i);
+            if (urun.category === 'single') {
+                singleFloorGrid.appendChild(card);
+            } else if (urun.category === 'double') {
+                doubleFloorGrid.appendChild(card);
+            } else if (urun.category === 'modern') {
+                modernGrid.appendChild(card);
+            } else if (urun.category === 'steel') {
+                steelHouseGrid.appendChild(card);
+            } else if (urun.category === 'container') {
+                containerGrid.appendChild(card);
+            } else if (urun.category === 'tinyhouse') {
+                tinyHouseGrid.appendChild(card);
+            }
+        });
+    }
+
+    // Modal açma fonksiyonu
+    function modalAc(index) {
+        const urun = urunler[index];
+        modalTitle.textContent = urun.baslik;
+        modalImage.src = urun.resim;
+        modalImage.alt = urun.baslik;
+        modalDesc.textContent = urun.aciklama;
+        modalFeatures.innerHTML = urun.ozellikler.map(f => `<li>${f}</li>`).join("");
+        modalPrice.textContent = "Fiyat: " + urun.fiyat;
+        modalOverlay.classList.add("active");
+    }
+
+    // Modal kapatma olay dinleyicileri
+    modalClose.addEventListener("click", () => {
+        modalOverlay.classList.remove("active");
+    });
+
+    modalOverlay.addEventListener("click", e => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove("active");
+        }
+    });
+
+    // Her bir ürün ızgarası için detay butonu olay dinleyicisi
+    [singleFloorGrid, doubleFloorGrid, modernGrid, steelHouseGrid, containerGrid, tinyHouseGrid].forEach(grid => {
+        grid.addEventListener("click", e => {
+            if (e.target.classList.contains("btn-detail")) {
+                const index = e.target.getAttribute("data-index");
+                modalAc(index);
+            }
+        });
+    });
+
+    // Sayfa yüklendiğinde ürünleri yükle
+    urunleriYukle();
+</script>
+
+</body>
+</html>

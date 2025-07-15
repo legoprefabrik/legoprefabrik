@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sembol Prefabrik</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f0fdf4; /* Daha açık yeşilimsi beyaz */
+        margin: 0;
+        color: #222;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* ÜST LOGO & SOSYAL ALANI */
+    .header-top {
+        max-width: 900px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+    .header-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .header-logo img {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+    }
+    .header-logo span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1a5e2f; /* Koyu yeşil */
+    }
+    .header-socials a {
+        margin-left: 10px;
+        color: #1a5e2f; /* Koyu yeşil */
+        font-size: 1.3rem;
+        transition: color 0.3s;
+    }
+    .header-socials a:hover {
+        color: #38a169; /* Canlı yeşil */
+    }
+
+    /* Kategori Menüsü */
+    nav.kategori-menu {
+        max-width: 900px;
+        margin: 15px auto 40px;
+        display: flex;
+        gap: 25px;
+        justify-content: center;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    nav.kategori-menu a {
+        text-decoration: none;
+        color: #1a5e2f; /* Koyu yeşil */
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+    nav.kategori-menu a:hover,
+    nav.kategori-menu a.active {
+        border-color: #38a169; /* Canlı yeşil */
+        background-color: #e6f9ed; /* Açık yeşilimsi arka plan */
+        box-shadow: 0 4px 8px rgba(56,161,105,0.2); /* Yeşil tonunda gölge */
+        color: #38a169; /* Canlı yeşil */
+    }
+
+    /* Hero Bölümü STYLES */
+    .hero {
+        background: url('https://picsum.photos/id/1043/1600/600') center/cover no-repeat; /* Hero resmi */
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 10%;
+        color: white;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        scroll-margin-top: 70px;
+    }
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 15px;
+    }
+    .hero p {
+        font-size: 1.6rem;
+        max-width: 700px;
+        margin-bottom: 25px;
+    }
+
+    /* Ortak Bölüm Başlığı */
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: #1a5e2f; /* Koyu yeşil */
+        margin-bottom: 30px;
+        margin-top: 50px;
+    }
+
+    /* Ürün Kartları (product-card) için Grid Düzeni */
+    .product-grid {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding-bottom: 50px;
+    }
+
+    /* Product Card Stilleri */
+    .product-card {
+        perspective: 1000px;
+        position: relative;
+    }
+    .card-content {
+        width: 100%;
+        height: 250px;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(56,161,105,0.15); /* Yeşil tonunda gölge */
+        position: relative;
+    }
+    .product-card:hover .card-content {
+        transform: rotateY(180deg);
+    }
+    .front-face, .back-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+    .front-face {
+        background: white;
+        border: 2px solid #38a169; /* Canlı yeşil */
+        color: #1a5e2f; /* Koyu yeşil */
+    }
+    .product-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-bottom: 2px solid #38a169; /* Canlı yeşil */
+    }
+    .product-title {
+        padding: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .back-face {
+        background: #38a169; /* Canlı yeşil */
+        color: white;
+        transform: rotateY(180deg);
+        padding: 15px;
+        font-size: 0.85rem;
+        justify-content: space-between;
+    }
+    .back-face .mini-image {
+        width: 100%;
+        height: 110px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid #c7b198; /* Açık kahverengi/bej */
+        box-shadow: 0 3px 8px rgba(199, 177, 152, 0.6); /* Açık kahverengi/bej tonunda gölge */
+    }
+    .back-face .short-description {
+        margin-top: 10px;
+        flex-grow: 1;
+        font-weight: 600;
+        text-align: center;
+    }
+    .btn-detail {
+        margin-top: 10px;
+        width: 100%;
+        background-color: #c7b198; /* Açık kahverengi/bej */
+        border: none;
+        color: #1a5e2f; /* Koyu yeşil */
+        font-weight: 700;
+        padding: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        box-shadow: 0 3px 10px rgba(199, 177, 152, 0.5); /* Açık kahverengi/bej tonunda gölge */
+        transition: background-color 0.3s ease;
+    }
+    .btn-detail:hover {
+        background-color: #b0977e; /* Açık kahverenginin daha koyu tonu */
+    }
+
+    /* Modal Popup (Ortak) */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-overlay.active {
+        display: flex;
+    }
+    .modal-content {
+        background: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        padding: 20px 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 26px;
+        font-weight: 700;
+        color: #1a5e2f; /* Koyu yeşil */
+        cursor: pointer;
+    }
+    .modal-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1a5e2f; /* Koyu yeşil */
+        margin-bottom: 15px;
+    }
+    .modal-img {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    .modal-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #444;
+        margin-bottom: 15px;
+    }
+    .modal-info-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    .modal-info-list li {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        color: #333;
+    }
+    .modal-info-list li strong {
+        color: #1a5e2f; /* Koyu yeşil */
+        margin-right: 5px;
+    }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+        .hero {
+            padding: 0 5%;
+            height: 70vh;
+            align-items: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .header-top, nav.kategori-menu, .product-grid {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="header-top">
+    <div class="header-logo">
+        <img src="https://via.placeholder.com/40x40.png?text=S" alt="Logo">
+        <span>Sembol Prefabrik</span>
+    </div>
+    <div class="header-socials">
+        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+---
+
+<nav class="kategori-menu">
+    <a href="index.html" class="active">Ana Sayfa</a>
+    <a href="urunler.html">Ürünlerimiz</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="blog.html">Blog</a>
+    <a href="sss.html">S.S.S</a>
+    <a href="iletisim.html">İletişim</a>
+</nav>
+
+---
+
+<div class="hero">
+    <h1>Hayalinizdeki Prefabrik Yaşam</h1>
+    <p>Modern, dayanıklı ve çevre dostu prefabrik evler, çelik yapılar ve modüler yaşam alanları ile geleceğin konforunu bugünden yaşayın.</p>
+</div>
+
+---
+
+<section>
+    <h2 class="section-title">TEK KATLI PREFABRİK EVLER</h2>
+    <div class="product-grid" id="singleFloorGrid">
+    </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <img src="" alt="" class="modal-img" id="modalImage" />
+        <p class="modal-text" id="modalDesc"></p>
+
+        <ul class="modal-info-list" id="modalInfoList">
+            <li><strong>Metrekare:</strong> <span id="modalMetrekare"></span></li>
+            <li><strong>Yapıldığı Yer:</strong> <span id="modalYapildigiYer"></span></li>
+            <li><strong>Yapan Şirket:</strong> <span id="modalYapanSirket"></span></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Ürün verileri (Yeni alanlar eklendi: metrekare, yapildigiYer, yapanSirket)
+    const urunler = [
+        // Tek Katlı Prefabrik Evler
+        { type: 'product', id: 'tekkatli-40', category: 'single', baslik: "Tek Katlı 40m² Prefabrik Ev", resim: "https://picsum.photos/id/1018/400/300", kisaAciklama: "Kompakt ve işlevsel.", aciklama: "40 metrekarelik bu ev, hızlı kurulum ve uygun maliyet sunar.", metrekare: "40 m²", yapildigiYer: "Ankara", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-50', category: 'single', baslik: "Tek Katlı 50m² Prefabrik Ev", resim: "https://picsum.photos/id/1015/400/300", kisaAciklama: "Ferahlatan yaşam alanları.", aciklama: "50 metrekarelik model, daha geniş bir salon ve oda seçenekleri sunar.", metrekare: "50 m²", yapildigiYer: "İstanbul", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-60', category: 'single', baslik: "Tek Katlı 60m² Prefabrik Ev", resim: "https://picsum.photos/id/1016/400/300", kisaAciklama: "İdeal aile evi.", aciklama: "60 metrekarelik bu ev, orta büyüklükteki aileler için kullanışlıdır.", metrekare: "60 m²", yapildigiYer: "İzmir", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-70', category: 'single', baslik: "Tek Katlı 70m² Prefabrik Ev", resim: "https://picsum.photos/id/1019/400/300", kisaAciklama: "Geniş aileler için konfor.", aciklama: "70 metrekarelik bu model, ekstra oda ve yaşam alanı sunar.", metrekare: "70 m²", yapildigiYer: "Bursa", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-80', category: 'single', baslik: "Tek Katlı 80m² Prefabrik Ev", resim: "https://picsum.photos/id/1020/400/300", kisaAciklama: "Maksimum alan.", aciklama: "80 metrekarelik bu ev, ferah yaşam alanlarıyla öne çıkar.", metrekare: "80 m²", yapildigiYer: "Antalya", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-90', category: 'single', baslik: "Tek Katlı 90m² Prefabrik Ev", resim: "https://picsum.photos/id/1021/400/300", kisaAciklama: "Büyük aileler için lüks.", aciklama: "90 metrekarelik bu model, geniş aileler için idealdir.", metrekare: "90 m²", yapildigiYer: "Muğla", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-100', category: 'single', baslik: "Tek Katlı 100m² Prefabrik Ev", resim: "https://picsum.photos/id/1022/400/300", kisaAciklama: "Modern yaşam alanı.", aciklama: "100 metrekarelik modern tasarım, konfor ve fonksiyonellik sunar.", metrekare: "100 m²", yapildigiYer: "Adana", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-110', category: 'single', baslik: "Tek Katlı 110m² Prefabrik Ev", resim: "https://picsum.photos/id/1023/400/300", kisaAciklama: "Geniş aileler için ideal.", aciklama: "110 metrekarelik bu ev, kalabalık aileler için ferah ve kullanışlıdır.", metrekare: "110 m²", yapildigiYer: "Konya", yapanSirket: "Sembol Prefabrik" },
+        { type: 'product', id: 'tekkatli-120', category: 'single', baslik: "Tek Katlı 120m² Prefabrik Ev", resim: "https://picsum.photos/id/1024/400/300", kisaAciklama: "Lüks ve fonksiyonel.", aciklama: "120 metrekarelik lüks tek katlı ev, tüm ihtiyaçlarınızı karşılar.", metrekare: "120 m²", yapildigiYer: "Gaziantep", yapanSirket: "Sembol Prefabrik" },
+    ];
+
+    const singleFloorGrid = document.getElementById("singleFloorGrid");
+
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
+    const modalDesc = document.getElementById("modalDesc");
+
+    const modalInfoList = document.getElementById("modalInfoList");
+    const modalMetrekare = document.getElementById("modalMetrekare");
+    const modalYapildigiYer = document.getElementById("modalYapildigiYer");
+    const modalYapanSirket = document.getElementById("modalYapanSirket");
+
+    function createProductCard(urun, index) {
+        const kart = document.createElement("div");
+        kart.className = "product-card";
+        kart.innerHTML = `
+            <div class="card-content">
+                <div class="front-face">
+                    <img src="${urun.resim}" alt="${urun.baslik}" class="product-image" />
+                    <div class="product-title">${urun.baslik}</div>
+                </div>
+                <div class="back-face">
+                    <img src="${urun.resim}" alt="${urun.baslik} Küçük Önizleme" class="mini-image" />
+                    <div class="short-description">${urun.kisaAciklama}</div>
+                    <button class="btn-detail" data-type="product" data-index="${index}">Detayları Göster</button>
+                </div>
+            </div>
+        `;
+        return kart;
+    }
+
+    function urunleriYukle() {
+        urunler.forEach((urun, i) => {
+            const card = createProductCard(urun, i);
+            if (urun.category === 'single') {
+                singleFloorGrid.appendChild(card);
+            }
+        });
+    }
+
+    function modalAc(type, index) {
+        let item;
+        item = urunler[index];
+        
+        modalTitle.textContent = item.baslik;
+        modalImage.src = item.resim;
+        modalImage.alt = item.baslik;
+        modalDesc.textContent = item.aciklama;
+
+        modalMetrekare.textContent = item.metrekare;
+        modalYapildigiYer.textContent = item.yapildigiYer;
+        modalYapanSirket.textContent = item.yapanSirket;
+        
+        modalOverlay.classList.add("active");
+    }
+
+    modalClose.addEventListener("click", () => {
+        modalOverlay.classList.remove("active");
+    });
+
+    modalOverlay.addEventListener("click", e => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove("active");
+        }
+    });
+
+    document.addEventListener("click", e => {
+        if (e.target.classList.contains("btn-detail")) {
+            const type = e.target.getAttribute("data-type");
+            const index = e.target.getAttribute("data-index");
+            modalAc(type, index);
+        }
+    });
+
+    urunleriYukle();
+</script>
+
+</body>
+</html>

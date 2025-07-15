@@ -1,0 +1,755 @@
+/* style.css */
+
+/* Renk Paleti Tanımlamaları (Değişkenler) */
+:root {
+    --primary-orange: #FF7F50;       /* Ana Turuncu (Coral) */
+    --dark-orange: #E65C00;          /* Koyu Turuncu (Pumpkin Orange) */
+    --light-orange: #FFF0E6;         /* Çok Açık Turuncu (Vurgu Arka Plan) */
+    --text-dark: #333;               /* Koyu Yazı Rengi */
+    --text-light: #fff;              /* Açık Yazı Rengi */
+    --background-light: #f8f9fa;     /* Açık Arka Plan */
+    --card-bg: #fff;                 /* Kart Arka Planı */
+    --border-color: #FF7F50;         /* Ana Kenarlık Rengi */
+    --shadow-color: rgba(255, 127, 80, 0.2); /* Turuncu Gölge */
+    --hover-shadow-color: rgba(230, 92, 0, 0.3); /* Hover durumunda koyu turuncu gölge */
+}
+
+/* Sıfırlama */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light); /* Açık arka plan */
+    color: var(--text-dark); /* Koyu yazı rengi */
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-orange); /* Turuncu arka plan */
+    color: var(--text-light); /* Beyaz yazı */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+header .logo img {
+    height: 45px;
+}
+
+header .site-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: capitalize;
+    flex-grow: 1;
+    text-align: center;
+}
+
+header .social-icons {
+    display: flex;
+    gap: 18px;
+    font-size: 20px;
+}
+
+header .social-icons a {
+    color: var(--text-light); /* Beyaz ikonlar */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+header .social-icons a:hover {
+    color: var(--dark-orange); /* Hover'da koyu turuncu */
+}
+
+/* Menü (main-menu) */
+nav.main-menu {
+    background-color: var(--card-bg); /* Beyaz arka plan */
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-weight: 600;
+}
+
+nav.main-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+nav.main-menu ul li a {
+    text-decoration: none;
+    color: var(--text-dark); /* Koyu yazı rengi */
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase; /* Daha şık durması için büyük harf */
+    font-size: 16px;
+    display: inline-block;
+}
+
+nav.main-menu ul li a:hover,
+nav.main-menu ul li a:focus {
+    border-color: var(--primary-orange); /* Hover ve aktif border turuncu */
+    color: var(--primary-orange); /* Hover ve aktif yazı turuncu */
+    background-color: var(--light-orange); /* Hover ve aktif arka plan açık turuncu */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Turuncu gölge */
+}
+
+/* Hero Section */
+.hero {
+    /* Mevcut görseli korudum, turuncu temayla da uyumlu */
+    background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 10%;
+    color: var(--text-light); /* Beyaz yazı */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    scroll-margin-top: 70px; /* Sabit header varsa kaydırmayı ayarlar */
+}
+.hero h1 {
+    font-size: 3.5rem; /* Önceki verdiğin 3.5rem'e düşürdüm, 5rem çok büyük gelebilir */
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: capitalize; /* Bu zaten vardı */
+}
+.hero p {
+    font-size: 1.6rem;
+    max-width: 700px;
+    margin-bottom: 25px;
+}
+
+/* Genel Buton Tasarımı (btn) */
+.btn {
+    background-color: var(--primary-orange); /* Ana turuncu */
+    color: var(--text-light); /* Beyaz yazı */
+    padding: 14px 32px; /* Hero butonu için verdiğin değerleri kullandım */
+    font-size: 1.1rem; /* Hero butonu için verdiğin değeri kullandım */
+    font-weight: 700;
+    border: none;
+    border-radius: 8px; /* Hero butonu için verdiğin değeri kullandım */
+    cursor: pointer;
+    box-shadow: 0 6px 20px var(--shadow-color); /* Turuncu gölge */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    width: fit-content; /* Hero butonu için ekledim */
+    text-transform: uppercase; /* Bu zaten vardı */
+}
+
+.btn:hover {
+    background-color: var(--dark-orange); /* Koyu turuncu */
+    box-shadow: 0 8px 20px var(--hover-shadow-color); /* Hover'da daha belirgin turuncu gölge */
+    transform: scale(1.05); /* Bu zaten vardı */
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Z-index'i yükselttim */
+}
+
+.modal {
+    background: var(--card-bg); /* Beyaz arka plan */
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3); /* Daha nötr bir gölge */
+    position: relative;
+}
+
+.modal .close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    background: var(--primary-orange); /* Turuncu arka plan */
+    color: var(--text-light); /* Beyaz yazı */
+    border: none;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.modal .close-btn:hover {
+    background-color: var(--dark-orange); /* Hover'da koyu turuncu */
+}
+
+/* Blog Kartları */
+.blog-grid {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-card {
+    background: var(--card-bg); /* Beyaz arka plan */
+    border: 2px solid var(--primary-orange); /* Turuncu border */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px var(--shadow-color); /* Turuncu gölge */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px var(--hover-shadow-color); /* Hover'da daha belirgin turuncu gölge */
+}
+
+.blog-card .img-box {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.blog-card .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.blog-content .date {
+    font-size: 0.85rem;
+    color: #888; /* Nötr gri */
+}
+
+.blog-content h3 {
+    font-size: 1.2rem;
+    color: var(--dark-orange); /* Koyu turuncu başlık */
+    margin: 0;
+}
+
+.blog-content p {
+    font-size: 0.95rem;
+    color: var(--text-dark); /* Koyu yazı rengi */
+    line-height: 1.4;
+}
+
+.btn-read {
+    margin-top: auto;
+    align-self: flex-start;
+    background-color: var(--primary-orange); /* Turuncu arka plan */
+    color: var(--text-light); /* Beyaz yazı */
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-read:hover {
+    background-color: var(--dark-orange); /* Hover'da koyu turuncu */
+}
+
+/* Galeri Grid */
+.gallery-grid {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--primary-orange); /* Turuncu border */
+    box-shadow: 0 4px 12px var(--shadow-color); /* Turuncu gölge */
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Product Card */
+/* Bu kısım daha önceki HTML dosyasındaki product-card tanımına uygun olarak bırakılmıştır. */
+/* Eğer bu stiller ayrı bir js ile yükleniyorsa, yine de burada bulunmaları doğru olur. */
+.product-card {
+    perspective: 1000px;
+    position: relative;
+    opacity: 1; /* Yeni eklenen kartların başlangıçta görünür olması için 1 yaptım */
+    transform: translateY(0); /* Yeni eklenen kartların başlangıçta konumda olması için 0 yaptım */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.card-content {
+    width: 100%;
+    height: 250px;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px var(--shadow-color); /* Turuncu gölge */
+    position: relative;
+}
+.product-card:hover .card-content {
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 20px var(--hover-shadow-color); /* Hover'da daha belirgin turuncu gölge */
+}
+.front-face, .back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.front-face {
+    background: var(--card-bg); /* Kart ön yüzü beyaz */
+    border: 2px solid var(--primary-orange); /* Kart ön yüzü border turuncu */
+    color: var(--text-dark); /* Kart ön yüzü metin koyu gri */
+}
+.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--primary-orange); /* Resim altı border turuncu */
+}
+.product-title {
+    padding: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.back-face {
+    background: var(--primary-orange); /* Kart arka yüzü turuncu */
+    color: var(--text-light); /* Kart arka yüzü metin beyaz */
+    transform: rotateY(180deg);
+    padding: 15px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.back-face .mini-image {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid var(--text-light); /* Mini resim border beyaz */
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.6); /* Beyaz gölge */
+    margin-bottom: 10px;
+}
+.back-face .short-description {
+    margin-top: 0;
+    flex-grow: 1;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.btn-detail {
+    margin-top: 0;
+    width: 100%;
+    background-color: var(--card-bg); /* Detay butonu beyaz */
+    border: none;
+    color: var(--primary-orange); /* Detay butonu metni turuncu */
+    font-weight: 700;
+    padding: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px var(--shadow-color); /* Turuncu gölge */
+    transition: background-color 0.3s ease;
+}
+.btn-detail:hover {
+    background-color: var(--light-orange); /* Detay butonu hover açık turuncu */
+    color: var(--dark-orange); /* Detay butonu hover metni koyu turuncu */
+}
+
+
+/* Responsive Ayarlamalar */
+
+@media (max-width: 960px) {
+    /* Genel grid düzeni için (eğer varsa) */
+    .product-grid { /* Eğer HTML'de bu class kullanılıyorsa */
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+    }
+    header .site-title {
+        order: 3;
+        flex-grow: unset;
+    }
+    nav.main-menu ul {
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    nav.main-menu ul li a {
+        max-width: 100px;
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+    .hero {
+        align-items: center;
+        text-align: center;
+        padding: 0 5%;
+    }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    .hero p {
+        max-width: 100%;
+    }
+}
+
+/* Kategori Menüsü (kategori-menu) için responsive ayar. Mevcut kodundaki ile birleştirdim */
+nav.kategori-menu {
+    width: 100%;
+    max-width: 1200px;
+    margin: 15px auto 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    flex-wrap: wrap; /* mobilde alt satıra geçsin */
+    background: var(--background-light); /* Açık arka plan */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+nav.kategori-menu a {
+    flex: 1 1 auto; /* butonlar eşit büyüsün/küçülsün */
+    max-width: 150px; /* buton genişliği sınırı */
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-dark); /* Koyu yazı rengi */
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    white-space: nowrap; /* kelime kırılmasın */
+}
+
+nav.kategori-menu a:hover,
+nav.kategori-menu a.active {
+    border-color: var(--primary-orange); /* Turuncu border */
+    background-color: var(--light-orange); /* Açık turuncu arka plan */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Turuncu gölge */
+    color: var(--primary-orange); /* Turuncu yazı */
+}
+
+@media (max-width: 600px) {
+    nav.kategori-menu a {
+        max-width: 100px;
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+}
+nav.main-menu {
+    background-color: white; /* Burayı beyaz yaptık */
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+footer {
+   background-color: #333; /* Arka plan rengi (isteğe bağlı değiştirilebilir) */
+   color: #fff; /* Yazı rengi (isteğe bağlı değiştirilebilir) */
+   padding: 15px 20px; /* Üst ve alt boşluk (ince yapar), sağ ve sol boşluk */
+   text-align: center; /* Yazıları ortala (isteğe bağlı) */
+   width: 100%; /* Tam genişlik */
+   box-sizing: border-box; /* Boşlukların genişliğe dahil olmasını sağlar */
+   display: flex; /* İç öğeleri hizalamak için flexbox kullan */
+   justify-content: space-around; /* İç öğeleri yatayda eşit aralıklarla yerleştir */
+   align-items: center; /* İç öğeleri dikeyde ortala */
+   font-size: 0.9em; /* Yazı boyutu (isteğe bağlı) */
+}
+
+.footer-container {
+   display: flex; /* İç öğeleri yan yana sıralamak için */
+   justify-content: space-around; /* İç öğeler arasında boşluk bırak */
+   align-items: center; /* Dikeyde ortala */
+   width: 90%; /* İçeriğin genişliği (isteğe bağlı ayarlanabilir) */
+   max-width: 1200px; /* Maksimum genişlik (isteğe bağlı) */
+}
+
+.footer-col {
+   text-align: center; /* Sütun içindeki yazıları ortala (isteğe bağlı) */
+   margin: 0 10px; /* Sütunlar arasında boşluk */
+}
+
+.footer-col h3 {
+   margin-top: 0; /* Başlık üst boşluğunu kaldır */
+   font-size: 1.1em; /* Başlık boyutu */
+}
+
+.footer-col ul {
+   list-style: none; /* Liste işaretlerini kaldır */
+   padding: 0; /* Liste boşluğunu kaldır */
+}
+
+.footer-col ul li {
+   margin-bottom: 5px; /* Liste öğeleri arasında boşluk */
+}
+
+.footer-col a {
+   color: #ddd; /* Link rengi */
+   text-decoration: none; /* Alt çizgiyi kaldır */
+}
+
+.footer-col a:hover {
+   color: #fff; /* Üzerine gelince link rengi */
+}
+
+.social-icons a {
+   display: inline-block; /* Yan yana sırala */
+   margin: 0 5px; /* İkonlar arasında boşluk */
+   font-size: 1.2em; /* İkon boyutu */
+   color: #ddd; /* İkon rengi */
+}
+
+.social-icons a:hover {
+   color: #fff; /* Üzerine gelince ikon rengi */
+}
+
+.footer-bottom {
+   text-align: center; /* Alt bölümü ortala */
+   padding: 10px 0; /* Alt boşluk */
+   background-color: rgba(0, 0, 0, 0.2); /* Hafif koyu arka plan */
+   width: 100%;
+   box-sizing: border-box;
+}
+/* İletişim Kartları İçindeki Linkler */
+.contact-card .contact-link {
+    color: inherit; /* Üst elemanın rengini alsın (yani koyu yeşil) */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    /* İstersen üzerine gelince bir renk değişimi ekleyebilirsin: */
+    transition: color 0.3s ease;
+}
+
+.contact-card .contact-link:hover {
+    color: #38a169; /* Üzerine gelince canlı yeşil */
+}
+/* Footer Alt Bilgi Bölümü için Yeni Stil */
+.footer-bottom-info {
+    max-width: 1200px;
+    margin: 80px auto 60px; /* Footer'dan ve diğer bölümlerden boşluk */
+    padding: 0 20px;
+    text-align: center; /* Başlığı ortalamak için */
+}
+
+.footer-bottom-info .section-title {
+    margin-bottom: 40px; /* Başlık ile kartlar arasına boşluk */
+    font-size: 2.2rem; /* Başlık boyutunu ayarlayabiliriz */
+}
+
+/* Info Kartlara Özel Stil */
+.product-card.info-card {
+    height: auto; /* Yüksekliği otomatik yap */
+    padding: 20px; /* İç boşluğu ayarla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-color: var(--darker-soft-green); /* Daha koyu yeşil çerçeve */
+    box-shadow: 0 4px 14px var(--shadow-color); /* Mevcut gölge */
+}
+
+.product-card.info-card:hover {
+    box-shadow: 0 8px 30px var(--hover-shadow-color); /* Hover'da daha belirgin gölge */
+}
+
+.product-card.info-card .img-box {
+    display: none; /* Resim kutusunu gizle */
+}
+
+.product-card.info-card .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* İçeriği dikeyde ortala */
+    justify-content: center; /* İçeriği yatayda ortala */
+    width: 100%;
+}
+
+.product-card.info-card h3 {
+    font-size: 1.4rem; /* Başlık boyutu */
+    color: var(--primary-soft-green); /* Ana yeşil */
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: center; /* Başlığı ortala */
+}
+
+.product-card.info-card p {
+    font-size: 1.2rem; /* **İsim boyutu büyütüldü** */
+    color: var(--text-dark-gray); /* Koyu gri yazı */
+    font-weight: 700; /* **İsim kalınlaştırıldı** */
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-align: center; /* İsmi ortala */
+}
+
+/* Ana menüyü ortalamak için (Eğer ortalanmamışsa) */
+/* Bu kısım zaten var olan main-menu CSS'ine ekleme veya değişiklik yapacaktır */
+nav.main-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; /* **Menü öğelerini ortala** */
+}
+
+/* Responsive (küçük ekranlar için product-grid zaten ortalıyordu) */
+/* Eğer product-grid'in kendisi ortalı değilse, aşağıdaki CSS'i ekleyebiliriz */
+.product-grid {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center; /* Grid öğelerini yatayda ortala */
+    align-items: center; /* Grid öğelerini dikeyde ortala */
+}
+
+@media(max-width: 960px) {
+    .product-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+header {
+    background-color: #FFFFFF; /* Arka planı beyaz yapar */
+    padding: 10px 0; /* Üst ve alttan boşluk ekleyebilirsiniz */
+    display: flex; /* İçeriği hizalamak için flexbox kullanır */
+    justify-content: center; /* İçeriği yatayda ortalar */
+    align-items: center; /* İçeriği dikeyde ortalar */
+    width: 100%; /* Tam genişlik sağlar */
+}
+
+.header-content {
+    /* Eğer gerekirse, logo için ek bir kapsayıcı */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.centered-logo {
+    display: block; /* Margin auto ile ortalamak için blok element olmalı */
+    margin: 0 auto; /* Logoyu yatayda ortalar */
+    max-width: 150px; /* Logonun maksimum genişliğini ayarlayın */
+    height: auto; /* Orantılı kalmasını sağlar */
+    /* İsteğe bağlı: Eğer logoyu küçük ve yuvarlak yapmak isterseniz */
+    /* width: 50px; */
+    /* height: 50px; */
+    /* border-radius: 50%; */
+    /* object-fit: cover; */
+}
+
+/* Navigasyon menüsü için önceki CSS ayarlarınız geçerli kalmalı */
+.main-menu {
+    /* Örneğin: */
+    background-color: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+}
+
+.main-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block; /* Menüyü ortalamak için */
+}
+
+.main-menu ul li {
+    display: inline-block;
+    padding: 10px 15px;
+}
+
+.main-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.main-menu .menu-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+.social-icons-menu {
+    display: inline-block; /* Sosyal ikonları menüde yan yana tutar */
+    margin-left: 20px; /* Menü maddelerinden ayırmak için */
+}
+
+.social-icons-menu a {
+    color: #555;
+    font-size: 20px;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.social-icons-menu a:hover {
+    color: #007bff; /* Hover rengini isteğinize göre ayarlayın */
+}

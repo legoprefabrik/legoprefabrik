@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sembol Prefabrik - Ana Sayfa</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        /* Renk Paleti Tanımlamaları (Değişkenler) */
+        :root {
+            --primary-soft-green: #6B9F71;       /* Ana Yumuşak Yeşil (Orta Pastel Yeşil) */
+            --darker-soft-green: #4A7C59;        /* Daha Koyu Yumuşak Yeşil (Hover için) */
+            --light-cream: #F5FBF6;              /* Yeşilimsi Çok Açık Krem/Beyazımsı */
+            --text-dark-gray: #333;              /* Koyu Gri Yazı Rengi */
+            --text-medium-gray: #555;            /* Orta Gri Yazı Rengi */
+            --text-light: #fff;                  /* Beyaz Yazı Rengi */
+            --background-light: #fefefe;         /* Çok Açık Arka Plan */
+            --card-bg: #fff;                     /* Kart Arka Planı */
+            --border-color: #6B9F71;             /* Yumuşak Yeşil Kenarlık */
+            --shadow-color: rgba(107, 159, 113, 0.25); /* Yumuşak Yeşil Gölge */
+            --hover-shadow-color: rgba(74, 124, 89, 0.35); /* Hover durumunda koyu yumuşak yeşil gölge */
+            --footer-bg: #6B9F71;                /* Footer arka planı için yumuşak yeşil */
+            --footer-text-light: #e0f2e3;        /* Footer içindeki açık yazı rengi */
+        }
+
+        /* Temel sıfırlama */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Üst Header */
+        header {
+            background-color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            color: var(--text-light); /* Beyaz */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        header .logo {
+            display: flex; /* Logo ve başlığı yan yana tutmak için */
+            align-items: center;
+            gap: 10px; /* Logo ile yazı arasındaki boşluk */
+        }
+        header .logo img {
+            height: 90px; /* Logo büyütüldü */
+            width: auto; /* Oranı koru */
+            border-radius: 8px; /* Hafif yuvarlak köşeler */
+            background-color: var(--light-cream); /* Logo arka planı */
+            padding: 5px; /* İç boşluk */
+        }
+        header .site-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: capitalize;
+            text-align: left; /* Logonun yanına yaslı dursun */
+            min-width: unset; /* Minimum genişlik sınırlamasını kaldır */
+        }
+        header .social-icons {
+            display: flex;
+            gap: 18px;
+            font-size: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            min-width: 150px;
+        }
+       header .social-icons a {
+    color: var(--text-dark-gray); /* Siyah */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+header .social-icons a:hover {
+    color: var(--darker-soft-green); /* Daha Koyu Yumuşak Yeşil (Hover için) */
+}
+
+        /* Menü */
+        nav.main-menu {
+            background-color: var(--card-bg); /* Beyaz */
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center; /* Menü ortalandı */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* Daha hafif gölge */
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        nav.main-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center; /* Menü öğeleri ortalandı */
+        }
+        nav.main-menu ul li a {
+            text-decoration: none;
+            color: var(--text-dark-gray); /* Koyu Gri */
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-size: 16px;
+            display: inline-block;
+        }
+        nav.main-menu ul li a:hover,
+        nav.main-menu ul li a:focus {
+            border-color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            background-color: var(--light-cream); /* Açık Krem */
+            box-shadow: 0 4px 8px var(--shadow-color); /* Yumuşak Yeşil gölge */
+        }
+
+        /* Kahraman bölümü (Hero) */
+        .hero {
+            /* Arka plan görseli için placeholder URL'i kullanıldı */
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            color: var(--text-light); /* Beyaz */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            scroll-margin-top: 70px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.6rem;
+            max-width: 700px;
+            margin-bottom: 25px;
+        }
+        .btn {
+            background-color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            color: var(--text-light); /* Beyaz */
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            width: fit-content;
+        }
+        .btn:hover {
+            background-color: var(--darker-soft-green); /* Daha Koyu Yumuşak Yeşil */
+            box-shadow: 0 6px 20px var(--hover-shadow-color); /* Daha belirgin gölge */
+        }
+
+        /* KALİTE POLİTİKAMIZ METNİ */
+        .quality-text {
+            max-width: 900px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: var(--darker-soft-green); /* Koyu Yumuşak Yeşil */
+            letter-spacing: 1.4px;
+        }
+        .quality-text p {
+            font-weight: 400;
+            text-transform: none;
+            margin-top: 14px;
+            font-size: 1rem;
+            color: var(--text-medium-gray); /* Orta Gri */
+            line-height: 1.5;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Kartlar bölümü */
+        .cards-container {
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--card-bg); /* Beyaz */
+            border: 2px solid var(--primary-soft-green); /* Yumuşak Yeşil çerçeve */
+            border-radius: 16px;
+            padding: 25px 20px 30px;
+            box-shadow: 0 4px 15px var(--shadow-color); /* Yumuşak Yeşil gölge */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            cursor: default;
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 30px var(--hover-shadow-color); /* Koyu yumuşak yeşil gölge */
+        }
+
+        /* Kart içindeki logo/icon alanı */
+        .card .icon {
+            font-size: 48px;
+            color: var(--primary-soft-green); /* Yumuşak Yeşil */
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            text-transform: capitalize;
+        }
+        .card p {
+            font-size: 1rem;
+            color: var(--text-dark-gray); /* Koyu Gri */
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Yeni Bölüm Başlıkları */
+        .section-title {
+            max-width: 1200px;
+            margin: 70px auto 30px;
+            padding: 0 20px;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--darker-soft-green); /* Koyu Yumuşak Yeşil */
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1.4px;
+        }
+
+        /* Ürün Kartları Grid */
+        .product-grid {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            justify-items: center; /* Grid öğelerini yatayda ortala */
+            align-items: center; /* Grid öğelerini dikeyde ortala */
+        }
+
+        .product-card {
+            background-color: var(--card-bg); /* Beyaz */
+            border: 2px solid var(--primary-soft-green); /* Yumuşak Yeşil */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px var(--shadow-color); /* Yumuşak Yeşil gölge */
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 30px var(--hover-shadow-color); /* Koyu yumuşak yeşil gölge */
+        }
+        .product-card .img-box {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-bottom: 2px solid var(--primary-soft-green); /* Yumuşak Yeşil */
+        }
+        .product-card .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .img-box img {
+            transform: scale(1.05);
+        }
+        .product-card h3 {
+            padding: 15px 10px;
+            font-size: 1.1rem;
+            color: var(--darker-soft-green); /* Koyu Yumuşak Yeşil */
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        /* Tümünü İncele Butonu */
+        .btn-view-all {
+            background-color: var(--primary-soft-green); /* Yumuşak Yeşil */
+            color: var(--text-light); /* Beyaz */
+            border: none;
+            padding: 14px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 auto 80px;
+            display: block;
+            width: fit-content;
+        }
+        .btn-view-all:hover {
+            background-color: var(--darker-soft-green); /* Koyu Yumuşak Yeşil */
+        }
+
+        /* Footer Öncesi Ek Bilgi Bölümü (Izgara DEĞİL, Sütunlar halinde) */
+        .footer-extra-info {
+            max-width: 1200px;
+            margin: 60px auto 40px; /* Footer'dan önce boşluk bırak */
+            padding: 0 20px;
+            display: flex;
+            justify-content: center; /* Ortalamak için */
+            gap: 80px; /* İki sütun arasındaki boşluk */
+            flex-wrap: wrap; /* Küçük ekranlarda alt alta geçiş */
+            text-align: center; /* İçerikleri ortala */
+        }
+
+        .footer-extra-info .info-column {
+            flex: 1; /* Esnekliği sayesinde eşit genişlikte yer kaplar */
+            min-width: 200px; /* Minimum genişlik belirleyerek çok daralmasını engelle */
+            max-width: 300px; /* Maksimum genişlik belirleyebiliriz */
+        }
+
+        .footer-extra-info .info-column h3 {
+            font-size: 1.3rem;
+            color: var(--darker-soft-green); /* Koyu Yumuşak Yeşil */
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center; /* Başlığı ortala */
+        }
+
+        .footer-extra-info .info-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-extra-info .info-column ul li {
+            color: var(--text-dark-gray); /* Koyu Gri */
+            font-size: 1.2rem; /* İsmi büyüttüm */
+            font-weight: 700; /* İsmi kalınlaştırdım */
+            padding: 5px 0;
+            text-align: center; /* İsmi ortala */
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg); /* Yumuşak Yeşil */
+            color: var(--text-light); /* Beyaz */
+            padding: 30px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        footer h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        footer p {
+            max-width: 700px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: var(--footer-text-light); /* Açık krem yazı */
+        }
+        footer div {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        footer h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        footer ul li a {
+            color: var(--footer-text-light); /* Açık krem yazı */
+            text-decoration: none;
+        }
+        footer ul li a:hover {
+            text-decoration: underline;
+            color: var(--text-light); /* Hover'da beyaz */
+        }
+        footer .social-footer {
+            display: flex;
+            gap: 20px;
+            font-size: 1.8rem;
+        }
+        footer .social-footer a {
+            color: var(--footer-text-light); /* Açık krem ikonlar */
+            transition: color 0.3s ease;
+        }
+        footer .social-footer a:hover {
+            color: var(--text-light); /* Hover'da beyaz */
+        }
+        footer p.copy {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 0.85rem;
+            color: var(--footer-text-light); /* Açık krem yazı */
+        }
+
+        /* Responsive */
+        @media(max-width: 960px) {
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width: 600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+                gap: 12px;
+            }
+            header .logo {
+                flex-basis: 100%; /* Küçük ekranda logo ve başlık ayrı satırlarda */
+                justify-content: center;
+            }
+            header .site-title {
+                order: 3;
+                flex-grow: unset;
+                text-align: center;
+            }
+            nav.main-menu ul {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+            .hero {
+                align-items: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                max-width: 100%;
+            }
+            footer div {
+                gap: 25px;
+                justify-content: center;
+            }
+            /* Footer altı ekstra bilgi responsive */
+            .footer-extra-info {
+                flex-direction: column; /* Küçük ekranlarda sütunları alt alta diz */
+                gap: 30px; /* Alt alta gelince boşluğu azalt */
+                align-items: center; /* Ortala */
+            }
+            .footer-extra-info .info-column {
+                min-width: unset; /* Minimum genişliği kaldır */
+                width: 100%; /* Tam genişlik kapla */
+                max-width: 250px; /* Belirli bir max genişlik verebiliriz */
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="https://i.imgur.com/8qmJJmI.png
+        " alt="Sembol Prefabrik Logo" /> <div class="site-title">Sembol Prefabrik</div>
+    </div>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/cemalettin.colak.9?rdid=Y5d1f8km9kqdGr0b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FrFVynuK1%2F#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/cemalettin.colak.9/?igsh=em4zb21qNGVyNHRm#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/sembolprefabrik" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+</header>
+
+<nav class="main-menu">
+    <ul>
+        <li><a href="index.html">Anasayfa</a></li>
+        <li><a href="urunler.html">Ürünlerimiz</a></li>
+        <li><a href="projeler.html">Projelerimiz</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="sss.html">S.S.S</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Sembol Prefabrik ile Güvenli ve Hızlı Yapılar</h1>
+    <p>Yılların tecrübesiyle, modern prefabrik çözümler sunuyoruz. Kalite ve hız bizim işimiz.</p>
+    <button class="btn" onclick="document.querySelector('.product-grid').scrollIntoView({behavior:'smooth'});">Ürünlerimizi İncele</button>
+</section>
+
+<section class="quality-text">
+    HAYAL EDENLERDEN DEĞİL, GERÇEKLEŞTİRENLERDEN OLUN<br>
+    KALİTE POLİTİKAMIZ<br>
+    <p>Sembol Prefabrik & Çelik A.Ş. olarak, müşteri memnuniyetini en üst seviyeye çıkarmak, güvenli ve dayanıklı yapılar üretmek ve sektörde kalite standartlarını belirleyen bir marka olmak temel önceliklerimizdir.</p>
+</section>
+
+<section class="cards-container">
+    <div class="card">
+        <div class="icon"><i class="fas fa-cogs"></i></div>
+        <h3>Yüksek Standartlı Üretim</h3>
+        <p>Tüm ürün ve hizmetlerimizi ulusal ve uluslararası kalite standartlarına uygun olarak üretiriz.</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <h3>Müşteri Odaklı Yaklaşım</h3>
+        <p>Müşteri taleplerini en iyi şekilde analiz ederek, beklentilerini aşan yenilikçi ve yaratıcı çözümler sunarız.</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-rocket"></i></div>
+        <h3>Sürdürülebilir Teknoloji</h3>
+        <p>Teknolojik gelişmeleri yakından takip eder, üretim süreçlerimizi sürekli geliştirerek verimliliği artırırız.</p>
+    </div>
+    <div class="card">
+        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Güvenlik ve Dayanıklılık</h3>
+        <p>Ürettiğimiz tüm yapılar, uzun ömürlü, güvenli ve sağlam olacak şekilde tasarlanır ve inşa edilir.</p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Öne Çıkan Kategoriler</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 40 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 40 Metrekare Prefabrik Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 50 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 50 Metrekare Prefabrik Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 60 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 60 Metrekare Prefabrik Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 70 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 70 Metrekare Prefabrik Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 80 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 80 Metrekare Prefabrik Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box"><img src="https://i.imgur.com/W8SHvUc.jpeg" alt="Tek Katlı 90 Metrekare Prefabrik Ev" /></div>
+            <h3>Tek Katlı 90 Metrekare Prefabrik Ev</h3>
+        </div>
+    </div>
+</section>
+
+---
+
+<section>
+    <h2 class="section-title">İNDİRİMDEKİ EVLER</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="img-box">
+                <img src="https://i.imgur.com/GamO1O1.jpeg" alt="Benim Yeni Tek Katlı Evim" />
+            </div>
+            <h3>Tek Katlı Modern Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box">
+                <img src="https://i.imgur.com/NoKgelE.jpeg" alt="Geniş Aile Dubleks Evi" />
+            </div>
+            <h3>Geniş Dubleks Ev</h3>
+        </div>
+        <div class="product-card">
+            <div class="img-box">
+                <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Deniz Manzaralı Prefabrik Ev" />
+            </div>
+            <h3>Deniz Manzaralı Ev</h3>
+        </div>
+    </div>
+</section>
+
+<button class="btn-view-all" onclick="window.location.href='urunler.html';">Tümünü İncele</button>
+
+<section class="cards-container">
+    <div class="card">
+        <img src="https://i.imgur.com/8qmJJmI.png" alt="Benim Yeni Tek Katlı Evim" />
+        <h3>| Yönetim |</h3>
+        <p>Cemalettin Çolak</p>
+    </div>
+</section>
+
+<footer>
+    <h2>Sembol Prefabrik & Çelik A.Ş.</h2>
+    <p>Sembol Prefabrik olarak kalite, güven ve müşteri memnuniyetini en üst seviyede tutmayı amaçlıyoruz. 7/24 hizmetinizdeyiz.</p>
+    <div>
+        <div>
+            <h3>İletişim</h3>
+            <ul>
+                <li>Telefon: +90 555 123 45 67</li>
+                <li>E-posta: info@sembolprefabrik.com</li>
+                <li>Adres: İstanbul, Türkiye</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Hızlı Linkler</h3>
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="urunler.html">Ürünlerimiz</a></li>
+                <li><a href="projeler.html">Projelerimiz</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Sosyal Medya</h3>
+            <div class="social-footer">
+                <a href="https://www.facebook.com/cemalettin.colak.9?rdid=Y5d1f8km9kqdGr0b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FrFVynuK1%2F#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/cemalettin.colak.9/?igsh=em4zb21qNGVyNHRm#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/sembolprefabrik" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <p class="copy"> © 2025 Sembol Prefabrik & Çelik A.Ş. Tüm hakları saklıdır.</p>
+</footer>
+
+</body>
+
+</html>

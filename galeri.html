@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sembol Prefabrik - Galeri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        /* Genel Sıfırlama ve Temel Stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0fdf4; /* Açık yeşilimsi beyaz */
+            margin: 0; /* body margin'ini sıfırladık */
+            color: #222;
+        }
+
+        /* ÜST LOGO & SOSYAL ALANI */
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            padding: 15px 20px; /* Kenarlara boşluk eklendi */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Küçük ekranlarda sarmalama */
+            background-color: #e6f9ed; /* Hafif bir arka plan */
+            border-bottom: 1px solid #d4ede1; /* Alt çizgi */
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background-color: #fff;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a5e2f; /* Koyu yeşil */
+        }
+        .header-socials {
+            display: flex;
+            gap: 15px; /* Sosyal ikonlar arası boşluk */
+        }
+        .header-socials a {
+            color: #1a5e2f; /* Koyu yeşil */
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        .header-socials a:hover {
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        /* Ana Menü (Navigasyon) */
+        nav.kategori-menu {
+            max-width: 1200px;
+            margin: 15px auto 40px;
+            display: flex;
+            gap: 20px; /* Menü öğeleri arası boşluk azaltıldı */
+            justify-content: center;
+            flex-wrap: wrap; /* Küçük ekranlarda sarmalama */
+            padding: 0 10px; /* Kenarlara hafif boşluk */
+        }
+        nav.kategori-menu a {
+            text-decoration: none;
+            color: #1a5e2f; /* Koyu yeşil */
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem; /* Font boyutu biraz küçüldü */
+            white-space: nowrap; /* Menü öğelerinin tek satırda kalmasını sağlar */
+        }
+        nav.kategori-menu a:hover,
+        nav.kategori-menu a.active {
+            border-color: #38a169; /* Canlı yeşil */
+            background-color: #e6f9ed; /* Açık yeşilimsi arka plan */
+            box-shadow: 0 4px 8px rgba(56,161,105,0.2); /* Yeşil tonunda gölge */
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        /* Sayfa Başlığı */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #1a5e2f; /* Koyu yeşil */
+            margin: 40px 0 30px; /* Alt boşluk artırıldı */
+            padding: 0 20px; /* Kenarlara boşluk */
+        }
+
+        /* Galeri Izgarası */
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto 60px; /* Alt boşluk eklendi */
+            padding: 0 20px; /* Kenarlara boşluk */
+            display: grid; /* Flex yerine Grid kullanıyoruz */
+            /* Auto-fit: Uygun sayıda sütun oluşturur.
+               Minmax: Her sütunun min 280px, max 1fr (eşit) genişlikte olmasını sağlar. */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; /* Izgara öğeleri arası boşluk */
+            justify-items: center; /* Öğeleri hücre içinde ortalar */
+            align-items: stretch; /* Öğelerin yüksekliğini hücreye göre esnetir */
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%; /* Kartın, grid hücresinin tam genişliğini almasını sağlar */
+            max-width: 320px; /* Kartın çok büyümesini engeller (isteğe bağlı) */
+            height: 200px; /* Sabit yükseklik, ihtiyaca göre ayarlanabilir */
+            perspective: 1000px;
+            aspect-ratio: 3/2; /* Genişlik/Yükseklik oranı (örneğin 3:2) - daha tutarlı kart boyutları için */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+            border-radius: 10px; /* Kart köşeleri */
+            overflow: hidden; /* İçerik taşmasını engeller */
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 10px; /* İç öğeye de border-radius */
+        }
+
+        .flip-card:hover .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex; /* İçerik ortalamak için */
+            justify-content: center; /* İçerik ortalamak için */
+            align-items: center; /* İçerik ortalamak için */
+        }
+
+        .flip-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Görüntünün kartı doldurmasını sağlar */
+            display: block;
+        }
+
+        .flip-back {
+            background-color: #38a169; /* Canlı yeşil */
+            color: white;
+            flex-direction: column;
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .flip-back h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .flip-back p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Responsive Ayarlamalar */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .header-socials {
+                margin-top: 10px;
+            }
+            nav.kategori-menu {
+                gap: 10px; /* Menü öğeleri arasındaki boşluğu daha da azalt */
+                padding: 0 5px;
+            }
+            nav.kategori-menu a {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin-top: 30px;
+            }
+            .gallery-grid {
+                /* Küçük ekranlarda tek sütuna düşecek ama minmax sayesinde yine de responsive olacak */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 0 15px;
+            }
+            .flip-card {
+                height: 180px; /* Yüksekliği biraz düşür */
+            }
+            .flip-back h3 {
+                font-size: 1.1rem;
+            }
+            .flip-back p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-logo span {
+                font-size: 1.3rem;
+            }
+            .header-socials {
+                font-size: 1.1rem;
+            }
+            nav.kategori-menu {
+                flex-direction: column; /* Menü öğelerini tamamen alt alta diz */
+                align-items: center; /* Ortala */
+            }
+            nav.kategori-menu a {
+                width: 90%; /* Menü öğelerinin genişliğini ayarla */
+                text-align: center;
+            }
+            .section-title {
+                font-size: 1.6rem;
+                margin-top: 25px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Tamamen tek sütun */
+                padding: 0 10px;
+            }
+            .flip-card {
+                height: 160px; /* Mobil cihazlar için daha da küçük yükseklik */
+                max-width: 95%; /* Ekran genişliğinin %95'ini kaplasın */
+                margin: 0 auto; /* Ortala */
+            }
+            .flip-back h3 {
+                font-size: 1rem;
+            }
+            .flip-back p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-top">
+    <div class="header-logo">
+        <img src="https://via.placeholder.com/40x40.png?text=Z" alt="Logo">
+        <span>Sembol Prefabrik</span>
+    </div>
+    <div class="header-socials">
+        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+<nav class="kategori-menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="projeler.html">Projelerimiz</a>
+    <a href="urunler.html">Ürünlerimiz</a>
+    <a href="blog.html">Blog</a>
+    <a href="sss.html">S.S.S</a>
+    <a href="iletisim.html" class="active">İletişim</a>
+</nav>
+
+<section class="content">
+    <h1 class="section-title">Galeri</h1>
+    <div class="gallery-grid">
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://picsum.photos/id/237/300/200" alt="Modern Prefabrik Ev">
+                </div>
+                <div class="flip-back">
+                    <h3>Modern Prefabrik Ev</h3>
+                    <p>80m², 2+1, yüksek izolasyonlu yapı</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Dubleks Ev">
+                </div>
+                <div class="flip-back">
+                    <h3>Kırsal Dubleks Ev</h3>
+                    <p>100m², 2 katlı, modern tasarım</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Ofis Konteyner">
+                </div>
+                <div class="flip-back">
+                    <h3>Taşınabilir Ofis Konteyner</h3>
+                    <p>Taşınabilir ve hızlı kurulum ofis</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Şantiye Ofis">
+                </div>
+                <div class="flip-back">
+                    <h3>Şantiye Ofis Binası</h3>
+                    <p>Dayanıklı ve pratik şantiye çözümü</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Modüler Kafe">
+                </div>
+                <div class="flip-back">
+                    <h3>Modüler Kafe Çözümü</h3>
+                    <p>Hızlı kurulum, şık ve fonksiyonel kafe</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Prefabrik Villa">
+                </div>
+                <div class="flip-back">
+                    <h3>Lüks Prefabrik Villa</h3>
+                    <p>Özel tasarım, geniş yaşam alanları</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Çiftlik Evi">
+                </div>
+                <div class="flip-back">
+                    <h3>Kırsal Prefabrik Çiftlik Evi</h3>
+                    <p>Doğayla iç içe, huzurlu yaşam alanı</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Depo Çözümleri">
+                </div>
+                <div class="flip-back">
+                    <h3>Endüstriyel Depolama</h3>
+                    <p>Hızlı ve güvenli depo çözümleri</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Bekçi Kulübesi">
+                </div>
+                <div class="flip-back">
+                    <h3>Prefabrik Bekçi Kulübesi</h3>
+                    <p>Güvenlik ve konfor bir arada</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Toplantı Odası">
+                </div>
+                <div class="flip-back">
+                    <h3>Modüler Toplantı Odası</h3>
+                    <p>Esnek ve hızlı ofis çözümleri</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Restoran">
+                </div>
+                <div class="flip-back">
+                    <h3>Prefabrik Restoran</h3>
+                    <p>Yeme-içme sektörü için modern yapılar</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://i.imgur.com/PyTD9DK.jpeg" alt="Hastane">
+                </div>
+                <div class="flip-back">
+                    <h3>Modüler Sağlık Birimi</h3>
+                    <p>Hızlı ve hijyenik sağlık çözümleri</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

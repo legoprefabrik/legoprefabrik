@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sıkça Sorulan Sorular - Sembol Prefabrik</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0fdf4; /* Açık yeşilimsi beyaz */
+            margin: 20px;
+            color: #222;
+        }
+
+        /* ÜST LOGO & SOSYAL ALANI */
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+        }
+        .header-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a5e2f; /* Koyu yeşil */
+        }
+        .header-socials a {
+            margin-left: 10px;
+            color: #1a5e2f; /* Koyu yeşil */
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        .header-socials a:hover {
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        nav.kategori-menu {
+            max-width: 1200px;
+            margin: 15px auto 40px;
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap; /* Menü elemanları küçük ekranlarda alt alta geçsin */
+        }
+        nav.kategori-menu a {
+            text-decoration: none;
+            color: #1a5e2f; /* Koyu yeşil */
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+        nav.kategori-menu a:hover,
+        nav.kategori-menu a.active {
+            border-color: #38a169; /* Canlı yeşil */
+            background-color: #e6f9ed; /* Açık yeşilimsi arka plan */
+            box-shadow: 0 4px 8px rgba(56,161,105,0.2); /* Yeşil tonunda gölge */
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        /* SSS Sayfası için Özel Stiller */
+        h2 {
+            text-align: center;
+            color: #1a5e2f; /* Koyu yeşil */
+            margin: 40px 0 30px;
+            font-size: 2.2rem;
+        }
+        .sss-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 10px;
+        }
+        .sss-kart {
+            background: white;
+            border-left: 6px solid #38a169; /* Canlı yeşil */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(56,161,105,0.1); /* Yeşil tonunda gölge */
+            padding: 20px;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .sss-kart:hover {
+            box-shadow: 0 6px 18px rgba(56,161,105,0.2); /* Yeşil tonunda gölge */
+        }
+        .sss-kart.active {
+            border-color: #38a169; /* Aktif kartın sol çizgisi vurgulu (canlı yeşil) */
+        }
+        .sss-soru {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            color: #1a5e2f; /* Koyu yeşil */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 5px;
+        }
+        .sss-soru i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+            color: #38a169; /* İkon rengi (canlı yeşil) */
+        }
+        .sss-kart.active .sss-soru i {
+            transform: rotate(180deg);
+        }
+        .sss-cevap {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #444;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, margin-top 0.3s ease-out;
+        }
+        .sss-kart.active .sss-cevap {
+            max-height: 200px;
+            margin-top: 15px;
+        }
+
+        /* Responsive Ayarlamalar */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav.kategori-menu {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-top">
+    <div class="header-logo">
+        <img src="https://via.placeholder.com/40x40.png?text=Z" alt="Logo">
+        <span>Sembol Prefabrik</span>
+    </div>
+    <div class="header-socials">
+        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+---
+
+## Sıkça Sorulan Sorular
+
+<nav class="kategori-menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="urunler.html">Ürünlerimiz</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="projeler.html">Projelerimiz</a>
+    <a href="sss.html" class="active">S.S.S</a>
+    <a href="blog.html">Blog</a>
+    <a href="iletisim.html">İletişim</a>
+</nav>
+
+<div class="sss-container">
+    <div class="sss-kart">
+        <div class="sss-soru">Prefabrik ev nedir? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik evler, fabrikada modern üretim teknikleri kullanılarak önceden hazırlanmış yapı elemanlarının, inşaat sahasında bir araya getirilmesiyle oluşturulan konutlardır. Hızlı kurulum ve ekonomik çözümler sunar.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Kurulum süresi ne kadardır? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik evin büyüklüğüne ve projenin karmaşıklığına bağlı olarak kurulum süresi değişir. Genellikle, temel atıldıktan sonra 1 ila 3 hafta içinde ana yapı tamamlanabilir.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Prefabrik evler depreme dayanıklı mı? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Evet, prefabrik evler, hafif çelik veya diğer dayanıklı malzemelerle, güncel deprem yönetmeliklerine uygun olarak mühendislik hesaplamalarıyla üretilir. Esnek yapıları sayesinde deprem riskine karşı oldukça dirençlidirler.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">İsteğe göre özelleştirilebilir mi? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Kesinlikle! Prefabrik evler, iç ve dış tasarımda yüksek derecede esneklik sunar. Müşterilerimiz, kat planı, dış cephe kaplaması, pencere tipleri ve iç mekan düzenlemeleri gibi birçok özelliği kendi zevklerine ve ihtiyaçlarına göre özelleştirebilirler.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Isı yalıtımı nasıl? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik evlerimizde yüksek kaliteli, modern ısı ve ses yalıtım malzemeleri kullanılır. Duvar, çatı ve zemin yalıtımı sayesinde maksimum enerji verimliliği sağlanır, bu da ısıtma ve soğutma maliyetlerinde önemli ölçüde tasarruf etmenizi sağlar.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Fiyatlar neye göre değişiyor? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik ev fiyatları, evin metrekare büyüklüğü, kat sayısı, kullanılan malzeme kalitesi, ek özellikler (balkon, teras vb.) ve montaj bölgesi gibi faktörlere bağlı olarak değişiklik gösterir. Size özel fiyat teklifi almak için bizimle iletişime geçebilirsiniz.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Tapu veriliyor mu? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik ev, arsaya kalıcı olarak inşa edildiğinde, yerel belediye ve imar kanunlarına uygun olarak yapı ruhsatı ve oturma izni (iskân) alınabilir. Böylece eviniz arsa tapunuza işlenir.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Hangi zeminlere kurulum yapılır? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik evlerin uzun ömürlü ve güvenli olması için sağlam, düz ve donatılı bir betonarme temel üzerine kurulum yapılması şarttır. Zemin etüdü ve temel projesi bu süreçte önemlidir.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Nakliye hizmetiniz var mı? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Evet, ürettiğimiz prefabrik yapıları Türkiye'nin her yerine ve birçok ülkeye güvenli bir şekilde nakliye ve montaj hizmeti sunmaktayız.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Konteyner sistemleriniz hazır mı? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Standart ve özel ölçülerde, farklı kullanım amaçlarına (ofis, yaşam alanı, şantiye, WC/duş) uygun hazır konteyner sistemlerimiz mevcuttur. Müşteri taleplerine göre özel üretim de yapmaktayız.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Su ve elektrik tesisatı dahil mi? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Evet, prefabrik ev ve konteyner projelerimizde tüm iç ve dış elektrik, su ve atık su tesisatları, projenin kapsamına göre anahtar teslim olarak dahil edilmektedir.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Garanti süresi nedir? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Tüm prefabrik yapılarımız ve konteyner sistemlerimiz, malzeme ve işçilik hatalarına karşı 2 yıl ZMT Prefabrik garantisi altındadır.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Yurt dışına satışınız var mı? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Evet, uluslararası projelere yönelik deneyimimizle dünyanın çeşitli ülkelerine prefabrik yapı ve konteyner ihracatı ile montaj hizmetleri sağlamaktayız.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Prefabrik ev soğukta dayanıklı mı? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Prefabrik evlerimiz, iklim koşulları göz önünde bulundurularak özel yalıtım malzemeleri ve tasarım detayları ile güçlendirilir. Bu sayede en sert kış koşullarında dahi üstün ısı yalıtımı ve konfor sunar.</div>
+    </div>
+    <div class="sss-kart">
+        <div class="sss-soru">Anahtar teslim hizmet veriyor musunuz? <i class="fas fa-chevron-down"></i></div>
+        <div class="sss-cevap">Evet, müşterilerimizin talepleri doğrultusunda, temel kazısından iç ve dış tamamlamalara kadar tüm süreçleri kapsayan anahtar teslim prefabrik ev çözümleri sunmaktayız. Bu sayede size sadece evinize taşınmak kalır.</div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.sss-kart').forEach(kart => {
+        kart.addEventListener('click', () => {
+            kart.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

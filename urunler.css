@@ -1,0 +1,517 @@
+/* style.css */
+
+/* Sıfırlama */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #0d3b66; /* Koyu Mavi */
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap; /* Küçük ekranlarda sarmalama */
+}
+
+header .logo img {
+  height: 45px;
+  border-radius: 8px; /* Logo köşeleri */
+  background-color: white; /* Logo arka planı */
+  padding: 5px;
+}
+
+header .site-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: capitalize;
+  flex-grow: 1;
+  text-align: center;
+  min-width: unset; /* Esnekliği koru */
+}
+
+header .social-icons {
+  display: flex;
+  gap: 18px;
+  font-size: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 150px; /* Sosyal ikonlar için minimum genişlik */
+}
+
+header .social-icons a {
+  color: white;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+header .social-icons a:hover {
+  color: #ffcc00; /* Sarı hover rengi */
+}
+
+/* Menü */
+nav.main-menu {
+  background-color: #fff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center; /* Menü ortalandı */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: 600;
+  position: sticky; /* Yapışkan menü */
+  top: 0;
+  z-index: 999;
+  border-radius: 0 0 10px 10px; /* Alt köşeleri yuvarla */
+}
+
+nav.main-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap; /* Menü öğeleri küçük ekranlarda sarmalama */
+  justify-content: center; /* Öğeleri ortala */
+  padding: 0; /* Tarayıcı varsayılan paddingini kaldır */
+  margin: 0; /* Tarayıcı varsayılan marginini kaldır */
+}
+
+nav.main-menu ul li a {
+  text-decoration: none;
+  color: #222;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  font-size: 16px;
+  display: inline-block;
+  white-space: nowrap; /* Menü öğelerinin tek satırda kalmasını sağlar */
+}
+
+nav.main-menu ul li a:hover,
+nav.main-menu ul li a:focus {
+  border-color: #0d6efd; /* Mavi kenarlık */
+  color: #0d6efd; /* Mavi metin */
+  background-color: #e7f0ff; /* Açık mavi arka plan */
+  box-shadow: 0 4px 8px rgba(13,110,253,0.2); /* Mavi tonunda gölge */
+}
+
+/* Hero */
+.hero {
+  background: url('hero-bg.jpg') center/cover no-repeat;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 10%;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  position: relative; /* Responsive arkaplan için */
+  background-attachment: fixed; /* Paralaks etkisi için */
+}
+
+.hero h1 {
+  font-size: 3.8rem;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
+  max-width: 600px;
+  font-weight: 500;
+}
+
+.hero .btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transform eklendi */
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hero .btn:hover {
+  background-color: #084bd8;
+  transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: none; /* Varsayılan olarak gizli */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0; /* Geçiş için */
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex; /* JavaScript ile görünür yapıldığında */
+  opacity: 1;
+}
+
+.modal {
+  background: white;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 30px; /* Padding artırıldı */
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(13, 110, 253, 0.35);
+  position: relative;
+  transform: scale(0.9); /* Geçiş için */
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1); /* Açıldığında tam boyut */
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 15px; /* Konumu güncellendi */
+  right: 15px; /* Konumu güncellendi */
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px; height: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  display: flex; /* İçindeki X'i ortalamak için */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.modal .close-btn:hover {
+  background-color: #084bd8;
+}
+
+/* Blog Kartları - Temel Stil (Izgarasız) */
+.blog-card {
+  background: white;
+  border: 2px solid #0d6efd;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px; /* Sadece standalone kartlar için */
+  box-shadow: 0 4px 14px rgba(13, 110, 253, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(13, 110, 253, 0.2);
+}
+
+.blog-card h3 {
+  color: #0d6efd;
+  margin-bottom: 8px;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.blog-card .read-more {
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.blog-card .read-more:hover {
+  color: #084bd8;
+}
+
+/* Izgara Başlıkları ve Bölüm Başlıkları */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #0d3b66; /* Koyu mavi */
+  margin: 60px 0 30px;
+  padding: 0 20px;
+  font-weight: 700;
+}
+
+/* Galeri Izgarası */
+.gallery-grid {
+  max-width: 1200px;
+  margin: 0 auto 80px; /* Sayfanın altından boşluk bırak */
+  padding: 0 20px;
+  display: grid;
+  /* Auto-fit: uygun sayıda sütun oluşturur. Minmax: her sütun min 280px, max 1fr (eşit) */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Izgara öğeleri arası boşluk */
+  justify-items: center; /* Öğeleri hücre içinde ortalar */
+  align-items: stretch; /* Öğelerin yüksekliğini hücreye göre esnetir */
+}
+
+.gallery-item { /* Yeni eklenen sarmalayıcı (div) için stil */
+  width: 100%; /* Izgara öğesinin tam genişliğini kapla */
+  background: white;
+  border: 2px solid #0d6efd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Tıklanabilir olduğunu belirtir */
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px; /* Sabit bir yükseklik ver */
+  object-fit: cover; /* Görüntünün alanı doldurmasını sağlar */
+  display: block;
+}
+
+.gallery-item-title {
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0d3b66;
+  text-align: center;
+}
+
+/* Blog Izgarası */
+.blog-grid {
+  max-width: 1200px;
+  margin: 0 auto 80px; /* Sayfanın altından boşluk bırak */
+  padding: 0 20px;
+  display: grid;
+  /* Auto-fit: uygun sayıda sütun oluşturur. Minmax: her sütun min 300px, max 1fr (eşit) */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px; /* Izgara öğeleri arası boşluk */
+  justify-items: center; /* Öğeleri hücre içinde ortalar */
+  align-items: stretch; /* Öğelerin yüksekliğini hücreye göre esnetir */
+}
+
+.blog-card { /* Blog ızgarası içindeki kartlar */
+  background: #fff;
+  border: 2px solid #0d6efd;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(13, 110, 253, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Izgara öğesinin tam genişliğini kapla */
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3);
+}
+
+.blog-card .img-box {
+  width: 100%;
+  height: 200px; /* Sabit bir yükseklik ver */
+  overflow: hidden;
+}
+
+.blog-card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1; /* İçeriğin kart içinde esnemesini sağlar */
+}
+
+.blog-content .date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.blog-content h3 {
+  font-size: 1.2rem;
+  color: #0d3b66;
+  margin: 0;
+}
+
+.blog-content p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.btn-read {
+  margin-top: auto; /* Alttan hizalamak için */
+  align-self: flex-start; /* Kendi kendine sola yasla */
+  background-color: #0d6efd;
+  color: white;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.btn-read:hover {
+  background-color: #084bd8;
+  transform: translateY(-1px);
+}
+
+/* Responsive Genel Ayarlamalar */
+@media (max-width: 992px) {
+  /* Daha büyük tabletler için */
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+  }
+  .blog-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tabletler ve büyük telefonlar için */
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  header .social-icons {
+    margin-top: 10px;
+  }
+  header .site-title {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  nav.main-menu {
+    padding: 10px 15px;
+  }
+  nav.main-menu ul {
+    gap: 15px;
+    flex-direction: column; /* Menü öğelerini alt alta diz */
+    align-items: center;
+  }
+  nav.main-menu ul li a {
+    width: 100%; /* Tüm genişliği kapla */
+    text-align: center;
+    padding: 10px 0; /* Dikey paddingi artır */
+  }
+  .hero {
+    height: 70vh;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    max-width: 90%;
+  }
+  .modal {
+    max-width: 90%;
+    padding: 25px;
+  }
+  .section-title {
+    font-size: 2rem;
+    margin: 40px 0 25px;
+  }
+  .gallery-grid, .blog-grid {
+    grid-template-columns: 1fr; /* Tek sütun */
+    gap: 20px;
+    padding: 0 15px;
+  }
+  .gallery-item img, .blog-card .img-box {
+    height: 180px; /* Yüksekliği biraz düşür */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Küçük telefonlar için */
+  header .logo img {
+    height: 40px;
+  }
+  header .site-title {
+    font-size: 18px;
+  }
+  header .social-icons {
+    font-size: 16px;
+  }
+  nav.main-menu ul li a {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+  .hero {
+    height: 60vh;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .hero .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  .modal {
+    padding: 20px;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin: 30px 0 20px;
+  }
+  .gallery-item img, .blog-card .img-box {
+    height: 160px; /* Daha da küçük ekranlar için yükseklik */
+  }
+  .blog-content h3 {
+    font-size: 1.1rem;
+  }
+  .blog-content p {
+    font-size: 0.9rem;
+  }
+}

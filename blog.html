@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog Yazıları</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0fdf4; /* Açık yeşilimsi beyaz */
+            margin: 20px;
+            color: #222;
+        }
+
+        /* ÜST LOGO & SOSYAL ALANI */
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+        }
+        .header-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a5e2f; /* Koyu yeşil */
+        }
+        .header-socials a {
+            margin-left: 10px;
+            color: #1a5e2f; /* Koyu yeşil */
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        .header-socials a:hover {
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        nav.kategori-menu {
+            max-width: 1200px;
+            margin: 15px auto 40px;
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap; /* Menü elemanları küçük ekranlarda alt alta geçsin */
+        }
+        nav.kategori-menu a {
+            text-decoration: none;
+            color: #1a5e2f; /* Koyu yeşil */
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+        nav.kategori-menu a:hover,
+        nav.kategori-menu a.active {
+            border-color: #38a169; /* Canlı yeşil */
+            background-color: #e6f9ed; /* Açık yeşilimsi arka plan */
+            box-shadow: 0 4px 8px rgba(56,161,105,0.2); /* Yeşil tonunda gölge */
+            color: #38a169; /* Canlı yeşil */
+        }
+
+        /* Blog Sayfası için Özel Stiller */
+        h2 {
+            text-align: center;
+            color: #1a5e2f; /* Koyu yeşil */
+            margin-bottom: 30px;
+            font-size: 2.2rem; /* Başlık boyutunu büyüttüm, diğer sayfalardaki h1 ile tutarlı olması için */
+        }
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.15); /* Yeşil tonunda gölge */
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s;
+        }
+        .blog-card:hover {
+            box-shadow: 0 8px 20px rgba(56, 161, 105, 0.2); /* Yeşil tonunda gölge */
+        }
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1a5e2f; /* Koyu yeşil */
+        }
+        .blog-author {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .blog-snippet {
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        .btn-devam {
+            align-self: flex-start;
+            background: #38a169; /* Canlı yeşil */
+            color: white;
+            padding: 8px 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-devam:hover {
+            background: #2a7f53; /* Daha koyu yeşil */
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            display: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 25px;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a5e2f; /* Koyu yeşil */
+            cursor: pointer;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1a5e2f; /* Koyu yeşil */
+        }
+        .modal-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-top">
+    <div class="header-logo">
+        <img src="https://via.placeholder.com/40x40.png?text=Z" alt="Logo">
+        <span>Sembol Prefabrik</span>
+    </div>
+    <div class="header-socials">
+        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+<nav class="kategori-menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="urunler.html">Ürünlerimiz</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="projeler.html">Projelerimiz</a>
+    <a href="sss.html">S.S.S</a>
+    <a href="blog.html" class="active">Blog</a> <a href="iletisim.html">İletişim</a>
+</nav>
+
+<h2>Blog Yazılarımız</h2>
+
+<div class="blog-grid" id="blogGrid"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 class="modal-title" id="modalTitle">Başlık</h2>
+        <p class="modal-text" id="modalText">Tüm içerik burada gösterilecek.</p>
+    </div>
+</div>
+
+<script>
+    const blogYazilari = [
+        {
+            baslik: "İki Katlı Prefabrik Evler: Şık ve Ekonomik Seçenekler",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/10/600/400", // Modern prefabrik ev
+            ozet: "İki katlı prefabrik evler, modern yaşamın ihtiyaçlarına şık ve ekonomik çözümler sunuyor. Düşünsenize...",
+            tamMetin: "İki katlı prefabrik evler, hem estetik hem de işlevsellik açısından büyük avantaj sağlar. Daha fazla yaşam alanı sunarken, enerji verimliliği ve modern mimarisi ile dikkat çeker. Bu tarz yapılar, küçük arsalarda bile maksimum kullanım sağlar. Ek olarak özelleştirilebilir tasarımı sayesinde müşterilerin yaşam tarzına uygun şekilde planlanabilir."
+        },
+        {
+            baslik: "Konteyner Evler: Taşınabilir ve Uygun Maliyetli Yaşam",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/20/600/400", // Konteyner ev
+            ozet: "Konteyner evler, pratik kurulum ve taşınabilirlik avantajıyla öne çıkar...",
+            tamMetin: "Konteyner evler, modüler yapısıyla farklı yaşam alanlarına kolayca uyarlanabilir. Kolay taşınabilirliği ve uygun maliyetiyle hem bireysel hem de ticari kullanım için idealdir. Ayrıca dış cephe kaplamalarıyla estetik olarak da zenginleştirilebilir."
+        },
+        {
+            baslik: "Çelik Konstrüksiyonlu Yapılar Ne Kadar Dayanıklı?",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/30/600/400", // Çelik yapı detayı
+            ozet: "Çelik yapılar, yüksek mukavemet ve uzun ömür avantajlarıyla dikkat çekiyor...",
+            tamMetin: "Çelik konstrüksiyonlar, deprem gibi doğal afetlere karşı üstün dayanıklılık sağlar. Korozyona karşı özel kaplamalarla korunduğunda ömürleri onlarca yıla ulaşır. Ayrıca geniş açıklıklı yapılar için mükemmel çözümler sunar."
+        },
+        {
+            baslik: "Prefabrik Evlerin Avantajları ve Dezavantajları",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/40/600/400", // Bir prefabrik evin genel görünümü
+            ozet: "Prefabrik evler, hız ve maliyet açısından avantajlıdır. Peki ya eksileri?",
+            tamMetin: "Prefabrik evlerin avantajları arasında hızlı kurulum, düşük maliyet, enerji verimliliği yer alır. Dezavantajları ise sınırlı kat yüksekliği ve bazı bölgelerde ruhsat sıkıntısı olabilir. Bu yüzden ihtiyaç analizi önemlidir."
+        },
+        {
+            baslik: "Ofis Konteynerleri ile Taşınabilir İş Alanları",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/50/600/400", // Ofis konteynerinin içi veya dışı
+            ozet: "İnşaat sahalarından küçük işletmelere, taşınabilir ofis çözümleri...",
+            tamMetin: "Ofis konteynerleri, hızlı kurulumu ve düşük maliyetiyle ofis ihtiyacını hızla karşılar. İhtiyaca göre klima, yalıtım ve elektrik altyapısıyla donatılır."
+        },
+        {
+            baslik: "Yazlık İçin En Uygun Prefabrik Modeller",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/60/600/400", // Yazlık prefabrik ev veya tatil konsepti
+            ozet: "Tatillerinizi konforlu hale getirecek yazlık prefabrik ev seçenekleri...",
+            tamMetin: "Yazlık prefabrik evler, hafif yapıları ve doğayla uyumlu tasarımlarıyla öne çıkar. İstenilen bölgeye kısa sürede kurulabilir ve düşük bakım maliyeti sunar."
+        },
+        {
+            baslik: "Tek Katlı Prefabrik Evler: Huzurlu Yaşam Alanları",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/70/600/400", // Tek katlı modern ev
+            ozet: "Minimalist yaşamı tercih edenler için ideal çözümler...",
+            tamMetin: "Tek katlı prefabrik yapılar, yaşlı bireyler ve küçük aileler için ergonomik ve güvenlidir. Temel ihtiyaçlara uygun şekilde dizayn edilebilir ve estetikle işlevsellik dengelenir."
+        },
+        {
+            baslik: "Şantiyeler İçin Hazır Yapı Seçenekleri",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/80/600/400", // Şantiye alanı veya işçi barakaları
+            ozet: "Şantiye alanlarında kullanılan hazır yapı sistemleri ile zaman kazanın...",
+            tamMetin: "Hazır yapılar; yemekhane, yatakhane, wc-duş, ofis gibi alanlarda sahada hızlıca kurulur. Çelik karkas ve sandviç panel sistemleriyle uzun ömürlüdür."
+        },
+        {
+            baslik: "Prefabrik Okul Binaları: Eğitimde Hızlı Çözümler",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/90/600/400", // Okul binası veya sınıf
+            ozet: "Eğitim sektörüne özel, hızlı ve ekonomik prefabrik okul yapıları...",
+            tamMetin: "Prefabrik okul binaları, kısa sürede inşa edilebilen, güvenli ve modern eğitim ortamları sunar. İhtiyaca göre farklı derslik ve sosyal alan düzenlemeleri yapılabilir."
+        },
+        {
+            baslik: "Modüler Hastaneler: Acil Durum ve Geçici Çözümler",
+            yazar: "ZMT Prefabrik",
+            resim: "https://picsum.photos/id/100/600/400", // Hastane koridoru veya sağlık personeli
+            ozet: "Hızlı kurulumlu modüler hastane çözümleri ile sağlık hizmetleri...",
+            tamMetin: "Modüler hastaneler, salgınlar veya doğal afetler gibi acil durumlarda hızlıca devreye alınabilen, tam donanımlı sağlık tesisleri sunar. Hijyen ve fonksiyonellik ön plandadır."
+        }
+    ];
+
+
+    const blogGrid = document.getElementById("blogGrid");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+
+    blogYazilari.forEach((yazi, i) => {
+        const kart = document.createElement("div");
+        kart.className = "blog-card";
+        kart.innerHTML = `
+            <img src="${yazi.resim}" class="blog-img" alt="${yazi.baslik}">
+            <div class="blog-content">
+                <div class="blog-title">${yazi.baslik}</div>
+                <div class="blog-author">${yazi.yazar}</div>
+                <div class="blog-snippet">${yazi.ozet}</div>
+                <button class="btn-devam" data-index="${i}">Devamını Oku</button>
+            </div>
+        `;
+        blogGrid.appendChild(kart);
+    });
+
+    document.querySelectorAll('.btn-devam').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const index = e.target.getAttribute("data-index");
+            const yazi = blogYazilari[index];
+            modalTitle.textContent = yazi.baslik;
+            modalText.textContent = yazi.tamMetin;
+            modalOverlay.classList.add("active");
+        });
+    });
+
+    modalClose.addEventListener("click", () => {
+        modalOverlay.classList.remove("active");
+    });
+
+    modalOverlay.addEventListener("click", e => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove("active");
+        }
+    });
+</script>
+
+</body>
+</html>
